@@ -82,14 +82,24 @@ fn formatting() {
     println!("Format as hex {:X}", 234);
     println!("Format as oct {:o}", 234);
     println!("Format as oct {:.2}", 234.4567);
-
 }
 
 pub fn main() {
     different_prints();
+    println!();
+
     print_with_positional_args();
+    println!();
+
     print_with_special_formatting();
+    println!();
+
     debug_trait();
+    println!();
+
     display_trait();
+    println!();
+
     formatting();
+    println!();
 }
