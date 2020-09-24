@@ -26,27 +26,53 @@ fn different_prints() {
 }
 
 fn print_with_positional_args() {
-     println!("Can print arg {0}, then {1}, and then {2}", "arg0", "arg1", "arg2");
-     println!("Can print arg {arg0}, then {arg1}, and then {arg2}", arg0="arg0", arg1="arg1", arg2="arg2");
-     println!();
+    //Numbered arguments
+    println!(
+        "Can print arg {0}, then {1}, and then {2}",
+        "arg0", "arg1", "arg2"
+    );
+    //Named arguments
+    println!(
+        "Can print arg {arg0}, then {arg1}, and then {arg2}",
+        arg0 = "arg0",
+        arg1 = "arg1",
+        arg2 = "arg2"
+    );
+    println!();
 }
 
 fn print_with_special_formatting() {
-     println!("Printing binary {:b}", 234);
-     println!("Printing with padding {value:>witdh$}", value="value", witdh=10);
-     println!("Printing with filled padding {value:>0witdh$}", value=4, witdh=20);
+    println!("Printing binary {:b}", 234);
+    println!(
+        "Printing with padding {value:>witdh$}",
+        value = "value",
+        witdh = 10
+    );
+    println!(
+        "Printing with filled padding {value:>0witdh$}",
+        value = 4,
+        witdh = 20
+    );
 
-     println!();
+    println!();
 }
 
 fn debug_trait() {
     #[derive(Debug)]
     struct DebugPrintable(i32);
 
-    println!("Debug print for {0:?} and {1:?}", "string value", DebugPrintable(42));
-    println!("Debug pretty print for {0:#?} and {1:#?}", "string value", DebugPrintable(42));
+    println!(
+        "Debug print for {0:?} and {1:?}",
+        "string value",
+        DebugPrintable(42)
+    );
+    println!(
+        "Debug pretty print for {0:#?} and {1:#?}",
+        "string value",
+        DebugPrintable(42)
+    );
     println!();
-} 
+}
 
 fn display_trait() {
     use std::fmt;
@@ -55,7 +81,6 @@ fn display_trait() {
     struct List(Vec<i32>);
 
     impl fmt::Display for List {
-
         fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
             let vec = &self.0;
 

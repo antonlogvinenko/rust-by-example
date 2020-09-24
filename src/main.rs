@@ -1,9 +1,8 @@
-mod printing;
-mod primitives;
 mod custom_types;
+mod primitives;
+mod printing;
 
 fn main() {
-    println!("Hello, world!");
     printing::main();
     println!();
 

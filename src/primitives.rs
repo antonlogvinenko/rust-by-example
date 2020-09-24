@@ -1,4 +1,3 @@
-
 fn literals() {
      //Signed types
      let n1: i8 = 1;
@@ -8,7 +7,7 @@ fn literals() {
      let n5: i128 = 5;
      let p: isize = 10;
      println!("signed integers: {} {} {} {} {} {}", n1, n2, n3, n4, n5, p);
-     
+
      //Unsigned types
      let un1: i8 = 1;
      let un2: i16 = 2;
@@ -16,7 +15,10 @@ fn literals() {
      let un4: i64 = 4;
      let un5: i128 = 5;
      let up: isize = 10;
-     println!("unsigned integers: {} {} {} {} {} {}", un1, un2, un3, un4, un5, up);
+     println!(
+          "unsigned integers: {} {} {} {} {} {}",
+          un1, un2, un3, un4, un5, up
+     );
 
      let f1: f32 = 1.0;
      let f2: f64 = 2.0;
