@@ -23,15 +23,59 @@ fn structures() {
 
      let point = Point { x: 1.0, y: 2f32 };
      //Struct update syntax
-     let point2 = Point { x:1.0, ..point };
+     let point2 = Point { x: 1.0, ..point };
      //Accessing the structure
      println!("Accessing the structure {} {}", point2.x, point2.y);
      //Destructuring the structure
-     let Point {x : left, y: right} = point;
+     let Point { x: left, y: right } = point;
      println!("Destructured values: {} {}", left, right);
+}
+
+fn enums() {
+     #[derive(Debug)]
+     enum WebEvent {
+          PageLoad,
+          PageUnload,
+          KeyPress(char),
+          Paste(String),
+          Click { x: i64, y: i64 },
+     }
+
+     fn inspect(event: WebEvent) {
+          match event {
+               WebEvent::PageLoad => println!("page loaded"),
+               WebEvent::PageUnload => println!("page unloaded"),
+               WebEvent::KeyPress(c) => println!("key {} pressed", c),
+               WebEvent::Paste(paste) => println!("pasted string {}", paste),
+               WebEvent::Click { x, y } => {
+                    println!("Clicked at ({}, {})", x, y);
+               }
+          }
+     }
+
+     inspect(WebEvent::PageLoad);
+     inspect(WebEvent::PageUnload);
+     inspect(WebEvent::KeyPress('k'));
+     inspect(WebEvent::Paste("text".to_owned()));
+     inspect(WebEvent::Click { x: 32, y: 4 })
+}
+
+fn enum_aliases() {
+     #[derive(Debug)]
+     enum AdfsdfsdfLsdfdsffgsdfsfasafJfsdfsdfFactoryBuilder {
+          Add,
+          Substract,
+     }
+     type FactoryBuilder = AdfsdfsdfLsdfdsffgsdfsfasafJfsdfsdfFactoryBuilder;
+     let x = FactoryBuilder::Add;
+     println!("Short type name {:?}, {:?}", x, FactoryBuilder::Substract);
 }
 
 pub fn main() {
      structures();
+     println!();
+     enums();
+     println!();
+     enum_aliases();
      println!();
 }
