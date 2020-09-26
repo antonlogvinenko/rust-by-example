@@ -71,11 +71,34 @@ fn enum_aliases() {
      println!("Short type name {:?}, {:?}", x, FactoryBuilder::Substract);
 }
 
+fn c_like_enums() {
+     #[derive(Debug)]
+     enum Color {
+          Red = 0xff0000,
+          Green = 0x00ff00,
+          Blue = 0x0000ff,
+     }
+
+     println!("C like enum: {:?} {:?} {:?}", Color::Red, Color::Green, Color::Blue);
+}
+
+fn constants() {
+     const THRESHOLD: i32 = 42;
+     static LANGUAGE: &str = "Rust";
+
+     println!("const {}", THRESHOLD);
+     println!("static {}", LANGUAGE);
+}
+
 pub fn main() {
      structures();
      println!();
      enums();
      println!();
      enum_aliases();
+     println!();
+     c_like_enums();
+     println!();
+     constants();
      println!();
 }
