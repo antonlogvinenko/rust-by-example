@@ -3,17 +3,16 @@
  * Constructing all three
  * Descrutcuring all three
  * Accessing all three
- * 
+ *
  * Enums, +structures
  * Pattern matching
  * Aliases
- * 
+ *
  * C-like structures
  */
 
-
 fn structures() {
-     #[derive(Debug)]
+     #[derive(Debug, PartialEq)]
      struct Unit;
 
      #[derive(Debug)]
@@ -25,24 +24,26 @@ fn structures() {
           y: f32,
      }
 
-     println!("Trivial structure: {:?}", Unit);
+     //Trivial structure
+     assert_eq!(Unit, Unit);
 
      let pair = Pair(1, 2.0);
-     println!("Pair: {:?}", pair);
-     //Accessing the structure
-     println!("Pair cdr: {} {}", pair.0, pair.1);
+     assert_eq!(pair.1, 2.0);
      //Destructuring the structure
      let Pair(car, cdr) = pair;
-     println!("Destructured parts of Pair: {} {}", car, cdr);
+     assert_eq!(car, 1);
+     assert_eq!(cdr, 2.0);
 
      let point = Point { x: 1.0, y: 2f32 };
      //Struct update syntax
      let point2 = Point { x: 1.0, ..point };
      //Accessing the structure
-     println!("Accessing the structure {} {}", point2.x, point2.y);
+     assert_eq!(point2.x, 1.0);
+     assert_eq!(point2.y, 2f32);
      //Destructuring the structure
      let Point { x: left, y: right } = point;
-     println!("Destructured values: {} {}", left, right);
+     assert_eq!(left, 1.0);
+     assert_eq!(right, 2f32);
 }
 
 fn enums() {
@@ -55,68 +56,60 @@ fn enums() {
           Click { x: i64, y: i64 },
      }
 
-     fn inspect(event: WebEvent) {
+     fn inspect(event: WebEvent) -> String {
           match event {
-               WebEvent::PageLoad => println!("page loaded"),
-               WebEvent::PageUnload => println!("page unloaded"),
-               WebEvent::KeyPress(c) => println!("key {} pressed", c),
-               WebEvent::Paste(paste) => println!("pasted string {}", paste),
+               WebEvent::PageLoad => "page loaded".to_owned(),
+               WebEvent::PageUnload => "page unloaded".to_owned(),
+               WebEvent::KeyPress(c) => format!("key {} pressed", c),
+               WebEvent::Paste(paste) => format!("pasted string {}", paste),
                WebEvent::Click { x, y } => {
-                    println!("Clicked at ({}, {})", x, y);
+                    format!("Clicked at ({}, {})", x, y)
                }
           }
      }
 
-     inspect(WebEvent::PageLoad);
-     inspect(WebEvent::PageUnload);
-     inspect(WebEvent::KeyPress('k'));
-     inspect(WebEvent::Paste("text".to_owned()));
-     inspect(WebEvent::Click { x: 32, y: 4 })
+     assert_eq!(inspect(WebEvent::PageLoad), "page loaded");
+     assert_eq!(inspect(WebEvent::PageUnload), "page unloaded");
+     assert_eq!(inspect(WebEvent::KeyPress('k')), "key k pressed");
+     assert_eq!(inspect(WebEvent::Paste("text".to_owned())), "pasted string text");
+     assert_eq!(inspect(WebEvent::Click{x: 32, y: 4}), "Clicked at (32, 4)");
 }
 
 fn enum_aliases() {
-     #[derive(Debug)]
+     #[derive(Debug, PartialEq)]
      enum AdfsdfsdfLsdfdsffgsdfsfasafJfsdfsdfFactoryBuilder {
           Add,
-          Substract,
      }
      type FactoryBuilder = AdfsdfsdfLsdfdsffgsdfsfasafJfsdfsdfFactoryBuilder;
      let x = FactoryBuilder::Add;
-     println!("Short type name {:?}, {:?}", x, FactoryBuilder::Substract);
+     assert_eq!(x, AdfsdfsdfLsdfdsffgsdfsfasafJfsdfsdfFactoryBuilder::Add);
 }
 
 fn c_like_enums() {
-     #[derive(Debug)]
+     #[derive(Debug, PartialEq)]
      enum Color {
           Red = 0xff0000,
           Green = 0x00ff00,
           Blue = 0x0000ff,
      }
 
-     println!("C like enum: {:?} {:?} {:?}", Color::Red, Color::Green, Color::Blue);
+     assert_eq!(Color::Red as i32, 0xff0000);
+     assert_eq!(Color::Blue as i32, 0x0000ff);
+     assert_eq!(Color::Green as i32, 0x00ff00);
 }
 
 fn constants() {
      const THRESHOLD: i32 = 42;
-     static LANGUAGE: &str = "Rust";
+     assert_eq!(THRESHOLD, 42);
 
-     println!("const {}", THRESHOLD);
-     println!("static {}", LANGUAGE);
+     static LANGUAGE: &str = "Rust";
+     assert_eq!(LANGUAGE, "Rust");
 }
 
 pub fn main() {
      structures();
-     println!();
-
      enums();
-     println!();
-
      enum_aliases();
-     println!();
-
      c_like_enums();
-     println!();
-     
      constants();
-     println!();
 }

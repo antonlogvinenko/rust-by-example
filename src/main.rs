@@ -1,27 +1,21 @@
+mod conversion;
 mod custom_types;
 mod primitives;
 mod printing;
 mod variable_binding;
-mod conversion;
 
-extern crate termion;
-use termion::{color, style};
+//get rid of println!s in primitives/printing - replace with assert_eq!
+//primitives: 2 + 5
+//custom types: 3 + 6
+//move variable binding after that
+
+//todo make code runnable?
+//todo better comments?
 
 fn main() {
-    println!("Soimething {}Red adasd{}6666", color::Fg(color::Red), style::Reset);
-
     printing::main();
-    println!();
-
     primitives::main();
-    println!();
-
     custom_types::main();
-    println!();
-
     variable_binding::main();
-    println!();
-
     conversion::main();
-    println!();
 }

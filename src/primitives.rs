@@ -4,11 +4,11 @@
  * _ as separators in literals
  * Only explicit conversion using `as` keyword
  * Conversion follow C conventions unless they're undefined; Rust conversions have no undefined behaviour
- * 
+ *
  * tuples: destructuring, accessors
  * arrays: declaration, type, accessors, length
  * slices: how to get, type, accessors, length
- * 
+ *
  * Aliasing: only camel case unless disabled with annotation
  */
 
@@ -126,33 +126,21 @@ fn arrays_slices() {
 
 fn aliasing() {
      type NanoSecond = u64;
-     
      #[allow(non_camel_case_types)]
      type u64_t = u64;
 
      let ns: NanoSecond = 4;
      println!("Nanoseconds: {}", ns);
 
-     let x : u64_t = 4;
+     let x: u64_t = 4;
      println!("x: {}", x);
 }
 
 pub fn main() {
      literals();
-     println!();
-
      literal_specifiers();
-     println!();
-
      casting();
-     println!();
-
      aliasing();
-     println!();
-
      tuples();
-     println!();
-
      arrays_slices();
-     println!();
 }

@@ -8,11 +8,11 @@
 fn intro() {
      //With type annotation
      let x = 4;
-     println!("Without type annotation: {}", x);
+     assert_eq!(x, 4);
 
      //Without type annotation
      let y: i64 = 5;
-     println!("With type annotation: {}", y);
+     assert_eq!(y, 5);
 
      //Prefix suppresses "unused variable" warning message
      let _a = 4;
@@ -20,13 +20,11 @@ fn intro() {
 
 fn mutability() {
      let _x = 1;
-     
      //would not compile with an error: _x is immutable
      //_x += 1;
 
      let mut y = 1;
      y += 1;
-     println!("Mutated variable {}", y);
      assert_eq!(2, y);
 }
 
@@ -36,7 +34,7 @@ fn mutability() {
  */
 fn scope_and_shadowing() {
      let x = 1;
-     {    
+     {
           let x = 2;
           let _y = 3;
           assert_eq!(2, x);
@@ -66,21 +64,12 @@ fn freezing() {
      }
      x += 7;
      assert_eq!(8, x);
-     println!("{}", x);
 }
 
 pub fn main() {
      intro();
-     println!();
-
      mutability();
-     println!();
-
      scope_and_shadowing();
-     println!();
-
      declare_first();
-     println!();
-
      freezing();
 }
