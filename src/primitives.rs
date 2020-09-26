@@ -2,11 +2,15 @@
  * signed/unsigned ints, floats, char, bool, unit
  * type specifiers in literals
  * _ as separators in literals
+ * Only explicit conversion using `as` keyword
+ * Conversion follow C conventions unless they're undefined; Rust conversions have no undefined behaviour
+ * 
  * tuples: destructuring, accessors
  * arrays: declaration, type, accessors, length
  * slices: how to get, type, accessors, length
+ * 
+ * Aliasing: only camel case unless disabled with annotation
  */
-
 
 fn literals() {
      //Signed types
@@ -66,6 +70,25 @@ fn literal_specifiers() {
      println!("Literals with specifiers: {} {} {} {}", a, b, c, d);
 }
 
+fn casting() {
+     //When casting any value to unsigned type T,
+     //T::MAX + 1 is added or substracted
+     //until the value fits into the new type
+     //1000 - 256 - 256 - 256 = 232
+     let x = 1000_i16 as u8;
+     assert_eq!(232, x);
+     //-1 + 256 = 255
+     let y = -1_i16 as u8;
+     assert_eq!(255, y);
+
+     //When casting to a signed type, the bitwise result is the same
+     //as when casting to the corresponding unsigned type.
+     //If the most significant bit is 1, the the value is negative
+     //both are represented as 11101000 in binary
+     assert_eq!(-24, 1000i32 as i8);
+     assert_eq!(232, 1000i32 as u8);
+}
+
 fn tuples() {
      //Destructuring
      fn reverse(pair: (i32, bool)) -> (bool, i32) {
@@ -101,11 +124,30 @@ fn arrays_slices() {
      println!("Slice length {}", slice2.len());
 }
 
+fn aliasing() {
+     type NanoSecond = u64;
+     
+     #[allow(non_camel_case_types)]
+     type u64_t = u64;
+
+     let ns: NanoSecond = 4;
+     println!("Nanoseconds: {}", ns);
+
+     let x : u64_t = 4;
+     println!("x: {}", x);
+}
+
 pub fn main() {
      literals();
      println!();
 
      literal_specifiers();
+     println!();
+
+     casting();
+     println!();
+
+     aliasing();
      println!();
 
      tuples();
