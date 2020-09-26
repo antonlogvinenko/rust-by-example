@@ -1,7 +1,8 @@
 /**
- * Different macors for printing
- * to string/io::stdio/io::stderr
- * with or without newline
+ * Different macors for printing, to string/io::stdio/io::stderr, with or without newline
+ * Numbered/named parameters
+ * Formatting: :b, width, hex/binary/oct, precision
+ * Display vs Debug: why, {} and {:?}
  */
 fn different_prints() {
     //format creates formatted String

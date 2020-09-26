@@ -1,3 +1,13 @@
+/**
+ * signed/unsigned ints, floats, char, bool, unit
+ * type specifiers in literals
+ * _ as separators in literals
+ * tuples: destructuring, accessors
+ * arrays: declaration, type, accessors, length
+ * slices: how to get, type, accessors, length
+ */
+
+
 fn literals() {
      //Signed types
      let n1: i8 = 1;

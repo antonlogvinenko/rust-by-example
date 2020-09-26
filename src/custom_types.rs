@@ -1,3 +1,17 @@
+/**
+ * Structures: no args, unnamed args, named args
+ * Constructing all three
+ * Descrutcuring all three
+ * Accessing all three
+ * 
+ * Enums, +structures
+ * Pattern matching
+ * Aliases
+ * 
+ * C-like structures
+ */
+
+
 fn structures() {
      #[derive(Debug)]
      struct Unit;
@@ -93,12 +107,16 @@ fn constants() {
 pub fn main() {
      structures();
      println!();
+
      enums();
      println!();
+
      enum_aliases();
      println!();
+
      c_like_enums();
      println!();
+     
      constants();
      println!();
 }
