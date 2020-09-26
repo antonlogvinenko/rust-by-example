@@ -2,6 +2,7 @@ mod custom_types;
 mod primitives;
 mod printing;
 mod variable_binding;
+mod conversion;
 
 extern crate termion;
 use termion::{color, style};
@@ -19,5 +20,8 @@ fn main() {
     println!();
 
     variable_binding::main();
+    println!();
+
+    conversion::main();
     println!();
 }
