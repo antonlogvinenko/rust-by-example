@@ -1,4 +1,3 @@
-mod custom_types_conversion;
 mod custom_types;
 mod primitives;
 mod printing;
@@ -15,7 +14,6 @@ fn main() {
     printing::main();
     primitives::main();
     custom_types::main();
-    custom_types_conversion::main();
     variable_binding::main();
     expressions::main();
 }
