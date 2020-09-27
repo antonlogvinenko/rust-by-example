@@ -3,6 +3,7 @@ mod primitives;
 mod printing;
 mod variable_binding;
 mod expressions;
+mod flow_of_control;
 
 //todo make code runnable?
 //todo better comments?
@@ -13,4 +14,5 @@ fn main() {
     custom_types::main();
     variable_binding::main();
     expressions::main();
+    flow_of_control::main();
 }
