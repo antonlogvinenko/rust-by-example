@@ -1,4 +1,3 @@
-
 fn loop_loop() {
      //Infinite loop
      //break & continue with labels are available
@@ -32,7 +31,7 @@ fn while_loop() {
      let ret = 'p: while k < 10 {
           k += 1;
           if k < 3 {
-               continue 'p
+               continue 'p;
           }
           break 'p;
      };
@@ -68,7 +67,7 @@ fn for_range_loop() {
      let mut x = 0;
      for n in 1..10 {
           x += n;
-     };
+     }
      assert_eq!(x, 45);
 
      //range with inclusive right bound
@@ -83,9 +82,9 @@ fn for_range_loop() {
      'l: for _ in 1..100 {
           z += 1;
           if z < 10 {
-               continue 'l
+               continue 'l;
           } else {
-               break 'l
+               break 'l;
           }
      }
      assert_eq!(z, 10);
@@ -117,7 +116,6 @@ fn for_iterator_loop() {
           //Can't do: values were moved
           // assert_eq!(names, names);
      }
-     
      {
           let names = vec!["Bob", "Frank", "Ferris"];
           let mut names2 = vec![];
@@ -169,17 +167,81 @@ fn match_and_destructuring() {
           (2, false) | (3, false) => "b",
           (_, true) => "c",
           (_d, g @ false) if g => "bla",
-          _ => "oops"
+          _ => "oops",
      };
      assert_eq!(result, "b");
 
-     //todo enums
+     //destructure structs
+     struct Foo {
+          x: (u32, u32),
+          y: u32,
+     }
+     let foo = Foo { x: (1, 2), y: 3 };
+     //can use field name to refer
+     //can rename field name to refer
+     //can destrcuture field
+     //can ignore field(s) with ..
+     let x = match foo {
+          Foo { x: (1, b), y } => format!("{} {}", b, y).to_owned(),
+          Foo { x: i, y: 2 } => format!("{:?}", i).to_owned(),
+          Foo { x: (2, _), .. } => format!("ignored").to_owned(),
+          _ => format!("anything else"),
+     };
+     assert_eq!(x, "2 3");
 
-     //todo structs
+     //destructure enums
+     #[allow(dead_code)]
+     enum Color {
+          Red,
+          Blue,
+          RGB(u32, u32, u32),
+     }
+     let color = Color::RGB(1, 2, 3);
+     let c = match color {
+          Color::Red => "red".to_owned(),
+          Color::Blue => "blue".to_owned(),
+          Color::RGB(r, g, b) => format!("r{} g{} b{}", r, g, b),
+     };
+
+     assert_eq!(c, "r1 g2 b3");
 }
 
 fn match_and_refrerences() {
-     //todo
+     //destructure with * on value or with & on pattern
+     {
+          let reference = &4;
+          
+          let x = match reference {
+               &val => format!("{}", val),
+          };
+          assert_eq!(x, "4");
+
+          let x = match *reference {
+               val => format!("{}", val)
+          };
+          assert_eq!(x, "4");
+     }
+
+     //creating immutable & mutable references
+     {
+          let value1 = 42;
+
+          let c = match value1 {
+               //note: * dereferencing is optional, present for demonstation purpose only
+               ref x => format!("{}", *x)
+          };
+          assert_eq!(c, "42");
+
+          let mut value2 = 42;
+
+          let c = match value2 {
+               ref mut x => {
+                    *x += 1;
+                    format!("{}", x)
+               }
+          };
+          assert_eq!(c, "43");
+     }
 }
 
 pub fn main() {
