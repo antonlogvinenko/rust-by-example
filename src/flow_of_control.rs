@@ -141,6 +141,46 @@ fn for_iterator_loop() {
      }
 }
 
+fn match_control() {
+     let number = 42;
+
+     //pattern1 | ... | pattern if condition => ...
+     //pattern is matched value, _, range, destructuring pattern
+     //destructuring pattern = structure with: matched value | destrucrturing pattern
+     //also, all matched constants can be named with "name @"
+     let x = match number {
+          1 => "one".to_owned(),
+          2 | 3 | 4 | 5 => "two".to_owned(),
+          6..=10 => ">= 4".to_owned(),
+          n @ 11..=42 if n % 2 == 0 => format!("even {} >= 10", n),
+          n @ 11..=42 if n % 2 == 1 => format!("odd {} >= 10", n),
+          _ => "dunno".to_owned(),
+          // p => "dunno".to_owned()
+     };
+
+     assert_eq!(x, "even 42 >= 10".to_owned());
+}
+
+fn match_and_destructuring() {
+     //destructure tuples
+     let pair = (2, false);
+     let result = match pair {
+          (2, true) => "a",
+          (2, false) | (3, false) => "b",
+          (_, true) => "c",
+          (_d, g @ false) if g => "bla",
+          _ => "oops"
+     };
+     assert_eq!(result, "b");
+
+     //todo enums
+
+     //todo structs
+}
+
+fn match_and_refrerences() {
+     //todo
+}
 
 pub fn main() {
      if_else();
@@ -148,4 +188,7 @@ pub fn main() {
      while_loop();
      for_range_loop();
      for_iterator_loop();
+     match_control();
+     match_and_destructuring();
+     match_and_refrerences();
 }
