@@ -1,3 +1,7 @@
+//loop and if can return values
+//can use * and & or ref and ref mut anywhere in matches
+//can use @ to rename anywhere in matches
+
 fn loop_loop() {
      //Infinite loop
      //break & continue with labels are available
@@ -206,18 +210,59 @@ fn match_and_destructuring() {
      assert_eq!(c, "r1 g2 b3");
 }
 
+fn if_let() {
+     let x = Some(42);
+     let y = !true;
+     let result = if let Some(y) = x {
+          format!("it's {}", y)
+     } else if y {
+          format!("can't happen")
+     } else {
+          format!("can't happen either")
+     };
+     assert_eq!(result, "it's 42");
+
+     //Can be used when no PartialEq and can't compare
+     #[derive(Debug)]
+     enum Foo {
+          Bar,
+     }
+     let bar = Foo::Bar;
+     #[allow(irrefutable_let_patterns)]
+     let result = if let f @ Foo::Bar = bar {
+          format!("matched to {:?}", f)
+     } else {
+          format!("matched to smth else")
+     };
+     assert_eq!(result, "matched to Bar");
+}
+
+fn while_let() {
+     let mut optional = Some(0);
+     while let Some(i) = optional {
+          if i != 42 {
+               optional = Some(i + 1);
+          } else {
+               optional = None
+          }
+     }
+     assert_eq!(optional, None);
+}
+
+/**
+ * Following * and &, mut and ref mut can be used anywhere in matching constructions listed in this file
+ */
 fn match_and_refrerences() {
      //destructure with * on value or with & on pattern
      {
           let reference = &4;
-          
           let x = match reference {
                &val => format!("{}", val),
           };
           assert_eq!(x, "4");
 
           let x = match *reference {
-               val => format!("{}", val)
+               val => format!("{}", val),
           };
           assert_eq!(x, "4");
      }
@@ -228,7 +273,7 @@ fn match_and_refrerences() {
 
           let c = match value1 {
                //note: * dereferencing is optional, present for demonstation purpose only
-               ref x => format!("{}", *x)
+               ref x => format!("{}", *x),
           };
           assert_eq!(c, "42");
 
@@ -252,5 +297,7 @@ pub fn main() {
      for_iterator_loop();
      match_control();
      match_and_destructuring();
+     if_let();
+     while_let();
      match_and_refrerences();
 }
