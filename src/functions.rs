@@ -10,9 +10,7 @@ fn methods() {
                self.1 += 1;
           }
 
-          fn destroy(self) {
-
-          }
+          fn destroy(self) {}
      }
 
      let pair = Pair(1, 2);
@@ -35,10 +33,75 @@ fn methods() {
 }
 
 fn closures() {
+     let x = 10;
+     let annotated = |i: i32| -> i32 { i + x };
+     let inferred = |i| i + x;
 
+     assert_eq!(annotated(5), 15);
+     assert_eq!(inferred(6), 16);
+}
+
+fn closures_capturing() {
+     //Borrowing captured variables by immutable reference
+     {
+          let color = String::from("green");
+          //--> Sart holding immutable reference to color
+          let print = || println!("Color is {}", color);
+
+          //Can only borrow immutable while immutable the reference is held
+          let _color_ref = &color;
+          // let color_mut_ref = &mut color;
+          // let color_move = color;
+
+          //Using 'color' that was borrowed by immutable reference
+          print();
+          //<-- End holding immutable reference to 'color'
+     }
+
+     //Borrowing captured variables by mutable reference
+     {
+          let mut count = 0;
+          //--> Start holding mutable reference to color
+          let mut inc = || {
+               count += 1;
+               println!("count is {}", count);
+          };
+          
+          // let count2 = &count;
+          // let count3 = &mut count;
+          // let count4 = count;
+
+          //Using 'count' that was borrowed by mutable reference
+          inc();
+          //<-- End holding mutable reference to 'count'
+     }
+
+     //Moving captured variables
+     {
+          let string = String::from("cake");
+          //->> Start owning 'string'
+          let consume = || {
+               use std::mem;
+               mem::drop(string);
+          };
+
+          //already moved 'string'
+          // let string2 = string;
+          //already moved 'string'
+          // let string3 = &string;
+          //already moved 'string'
+          // let string4 = &mut string;
+          
+          consume();
+
+          //Can't call twice: already moved 'string'
+          // consume();
+
+     }
 }
 
 pub fn main() {
      methods();
      closures();
+     closures_capturing();
 }
