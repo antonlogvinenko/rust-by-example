@@ -64,9 +64,7 @@ fn closures_capturing() {
           //--> Start holding mutable reference to color
           let mut inc = || {
                count += 1;
-               println!("count is {}", count);
           };
-          
           // let count2 = &count;
           // let count3 = &mut count;
           // let count4 = count;
@@ -81,8 +79,7 @@ fn closures_capturing() {
           let string = String::from("cake");
           //->> Start owning 'string'
           let consume = || {
-               use std::mem;
-               mem::drop(string);
+               let _p = string;
           };
 
           //already moved 'string'
@@ -91,17 +88,33 @@ fn closures_capturing() {
           // let string3 = &string;
           //already moved 'string'
           // let string4 = &mut string;
-          
           consume();
 
           //Can't call twice: already moved 'string'
           // consume();
-
      }
+}
+
+fn forced_closure_capturing_with_move() {
+     let color = String::from("green");
+     //--> Sart owning color
+     let print = move || {
+          let _owning = color;
+          // mem::drop(color);
+     };
+     // let _color_ref = &color;
+     // let color_mut_ref = &mut color;
+     // let color_move = color;
+
+     //Using 'color' that was moved in
+     print();
+     //<-- End holding immutable reference to 'color'
+     // print();
 }
 
 pub fn main() {
      methods();
      closures();
      closures_capturing();
+     forced_closure_capturing_with_move();
 }
