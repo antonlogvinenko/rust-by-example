@@ -176,7 +176,7 @@ fn closure_traits() {
           apply_fn(closure); //<-- moved here, since signature is "apply_fn<F>(f: F) where F: Fn()"
           apply_fnmut(&mut closure);
           apply_once(closure); //<-- definitely moved here bc it's called inside apply_once as FnOnce
-          //TODO: closure has been moved, but these are allowed by the compiler
+                               //TODO: closure has been moved, but these are allowed by the compiler
           apply_fn(closure);
           apply_fnmut(&mut closure);
           apply_once(closure);
@@ -189,12 +189,14 @@ fn functions_as_closures() {
      fn call_me<F: Fn()>(f: F) {
           f();
      }
-     fn function() {
-          
-     }
+     fn function() {}
      call_me(function);
 }
 
+/**
+ * move must be used - to move local variables if function is returned
+ * Fn/FnOnce/FnMust be used - correct access to the closure as self in the call site
+ */
 fn returning_closures() {
      fn create_fn() -> impl Fn() -> String {
           let x = "cake1";
@@ -228,6 +230,55 @@ fn returning_closures() {
      assert_eq!(result3, "cake3");
 }
 
+fn std_examples() {
+     let mut vec = vec![1, 2, 3, 4];
+     let found1 = vec.iter().any(|&x: &i32| x == 2);
+     assert_eq!(found1, true);
+
+     let found2 = vec.iter_mut().any(|x: &mut i32| {
+          *x += 1;
+          *x == 2
+     });
+     assert_eq!(found2, true);
+     assert_eq!(vec, vec![2, 2, 3, 4]);
+
+     let found3 = vec.into_iter().any(|x: i32| {
+          let p = x;
+          p == 2
+     });
+     assert_eq!(found3, true);
+     //vec was borrowed after move
+     // assert_eq!(vec, vec![2, 2, 3, 4]);
+
+     let x = (0..)
+          .map(|n: i32| n * n)
+          .take_while(|&n| n < 10)
+          .filter(|&x| x > 4)
+          .fold(0, |acc, n| acc + n);
+     assert_eq!(x, 9);
+}
+
+
+fn diverging_functions() {
+     fn _foo() -> ! {
+          panic!("This call never returnts");
+     }
+
+     //Subtype of all types
+     fn sum_odd_numbers(up_to: u32) -> u32 {
+          let mut acc = 0;
+          for i in 0..up_to {
+               let addition: u32 = match i%2 == 1 {
+                    true => i,
+                    false => continue
+               };
+               acc += addition;
+          }
+          acc
+     }
+     assert_eq!(sum_odd_numbers(5), 4);
+}
+
 pub fn main() {
      methods();
      closures();
@@ -236,4 +287,6 @@ pub fn main() {
      closure_traits();
      functions_as_closures();
      returning_closures();
+     std_examples();
+     diverging_functions();
 }
