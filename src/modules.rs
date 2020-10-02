@@ -159,20 +159,48 @@ fn use_declaration() {
      }
 
      assert_eq!(use_mod::public_function(), "cake");
-     
      {
           use use_mod::public_function;
           assert_eq!(public_function(), "cake")
      }
-     
      {
           use use_mod::public_function as pf;
           assert_eq!(pf(), "cake");
      }
 }
 
+fn super_and_self() {
+     mod top {
+
+          pub fn function() -> &'static str {
+               "super's function"
+          }
+
+          mod cool {
+               pub fn function() -> &'static str {
+                    "cool's function"
+               }
+          }
+
+          pub mod my {
+               fn function() -> &'static str {
+                    "my function"
+               }
+
+               pub fn calling() {
+                    assert_eq!(function(), "my function");
+                    assert_eq!(super::function(), "super's function");
+                    assert_eq!(super::cool::function(), "cool's function");
+               }
+          }
+     }
+
+     top::my::calling();
+}
+
 pub fn main() {
      mod_access();
-     structures();
+     super_and_self();
      use_declaration();
+     structures();
 }
