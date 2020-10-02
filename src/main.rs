@@ -5,9 +5,12 @@ mod variable_binding;
 mod expressions;
 mod flow_of_control;
 mod functions;
+mod modules;
 
 //todo make code runnable?
 //todo better comments?
+
+extern crate termion;
 
 fn main() {
     printing::main();
@@ -17,4 +20,5 @@ fn main() {
     expressions::main();
     flow_of_control::main();
     functions::main();
+    modules::main();
 }
