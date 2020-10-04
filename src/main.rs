@@ -8,6 +8,7 @@ mod functions;
 mod modules;
 mod crates;
 mod cargo;
+mod attributes;
 
 //todo make code runnable?
 //todo better comments?
@@ -25,4 +26,5 @@ fn main() {
     modules::main();
     crates::main();
     cargo::main();
+    attributes::main();
 }
