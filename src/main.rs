@@ -6,6 +6,8 @@ mod expressions;
 mod flow_of_control;
 mod functions;
 mod modules;
+mod crates;
+mod cargo;
 
 //todo make code runnable?
 //todo better comments?
@@ -21,4 +23,6 @@ fn main() {
     flow_of_control::main();
     functions::main();
     modules::main();
+    crates::main();
+    cargo::main();
 }
