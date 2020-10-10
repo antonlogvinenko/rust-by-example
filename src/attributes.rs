@@ -23,8 +23,8 @@
  */
 
  //if "lib", then no longer need to pass --crate-type to rustc
-#![crate_type = "bin"]
-#![crate_name = "rust_by_example"]
+//#![crate_type = "bin"]
+//#![crate_name = "rust_by_example"]
 
 #[allow(dead_code)]
 fn dead_code() {}
