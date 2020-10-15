@@ -134,8 +134,12 @@ fn bounds() {
      impl Red for Cardinal {}
      impl Blue for BlueJay {}
 
-     fn red<T: Red>(_: &T) -> &'static str { "red" }
-     fn blue<T: Blue>(_: &T) -> &'static str { "blue" }
+     fn red<T: Red>(_: &T) -> &'static str {
+          "red"
+     }
+     fn blue<T: Blue>(_: &T) -> &'static str {
+          "blue"
+     }
 
      let cardinal = Cardinal;
      let blue_jay = BlueJay;
@@ -162,6 +166,52 @@ fn multiple_bounds() {
      compare_prints(&string, &int);
 }
 
+/**
+ * Where clause allows
+ * 1. Writing generic types and bounds separately (might be clearer)
+ * 2. Defining bounds for arbitrary types, not just type vairables
+ */
+fn where_clause() {
+     //Defining generic types in where
+     struct _YourType;
+     trait TraitB {};
+     trait TraitC {};
+     trait TraitE {};
+     trait TraitF {};
+     trait MyTrait<X, Y> {};
+     impl <A, D> MyTrait<A, D> for _YourType
+     where
+          A: TraitB + TraitC,
+          D: TraitE + TraitF,
+     {
+     };
+
+     //Defining bounds for Option<T> in where
+     trait PrintInOption {
+          fn print_in_option(self);
+     }
+     impl<T> PrintInOption for T where Option<T>: std::fmt::Debug {
+          fn print_in_option(self) {
+               println!("{:?}", Some(self));
+          }
+     }
+}
+
+fn new_type_idiom() {
+     struct Years(i32);
+     struct Days(i32);
+
+     fn old_enough(age: &Years) -> bool {
+          age.0 >= 18
+     }
+
+     let _age_days = Days(4444);
+     let age_years = Years(43);
+     assert_eq!(true, old_enough(&age_years));
+     //This won't work: types don't match
+     // assert_eq!(true, old_enough(&_age_days));
+}
+
 pub fn main() {
      intro();
      functions();
@@ -169,4 +219,6 @@ pub fn main() {
      traits();
      bounds();
      multiple_bounds();
+     where_clause();
+     new_type_idiom();
 }
