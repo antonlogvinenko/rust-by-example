@@ -253,6 +253,33 @@ fn associated_types() {
      assert_eq!(2, difference(&container));
 }
 
+/*
+ * Phantom type parameter is the one that doesn't affect runtime,
+ * but is checked during compile time.
+ * Used to enforce Units of measure, for instance.
+ */
+fn phantom_type_paramters() {
+     use std::marker::PhantomData;
+
+     struct PhantomTuple<A, B>(A, PhantomData<B>);
+     struct PhantomStruct<A, B> {
+          _first: A,
+          phantom: PhantomData<B>,
+     };
+
+     let _t1: PhantomTuple<char, i32> = PhantomTuple('Q', PhantomData);
+     let _t2: PhantomTuple<char, f64> = PhantomTuple('T', PhantomData);
+
+     let _s1: PhantomStruct<char, i32> = PhantomStruct {
+          _first: 'Q',
+          phantom: PhantomData,
+     };
+     let _s2: PhantomStruct<char, f64> = PhantomStruct {
+          _first: 'Q',
+          phantom: PhantomData,
+     };
+}
+
 pub fn main() {
      intro();
      functions();
@@ -263,4 +290,5 @@ pub fn main() {
      where_clause();
      new_type_idiom();
      associated_types();
+     phantom_type_paramters();
 }
