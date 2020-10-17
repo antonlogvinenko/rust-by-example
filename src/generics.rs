@@ -179,7 +179,7 @@ fn where_clause() {
      trait TraitE {};
      trait TraitF {};
      trait MyTrait<X, Y> {};
-     impl <A, D> MyTrait<A, D> for _YourType
+     impl<A, D> MyTrait<A, D> for _YourType
      where
           A: TraitB + TraitC,
           D: TraitE + TraitF,
@@ -190,7 +190,10 @@ fn where_clause() {
      trait PrintInOption {
           fn print_in_option(self);
      }
-     impl<T> PrintInOption for T where Option<T>: std::fmt::Debug {
+     impl<T> PrintInOption for T
+     where
+          Option<T>: std::fmt::Debug,
+     {
           fn print_in_option(self) {
                println!("{:?}", Some(self));
           }
@@ -212,6 +215,44 @@ fn new_type_idiom() {
      // assert_eq!(true, old_enough(&_age_days));
 }
 
+fn associated_types() {
+     struct Container(i32, i32);
+
+     trait Contains {
+          type A;
+          type B;
+
+          fn contains(&self, _: &Self::A, _: &Self::B) -> bool;
+          fn first(&self) -> i32;
+          fn last(&self) -> i32;
+     }
+
+     impl Contains for Container {
+          type A = i32;
+          type B = i32;
+
+          fn contains(&self, x: &i32, y: &i32) -> bool {
+               (&self.0 == x) && (&self.1 == y)
+          }
+
+          fn first(&self) -> i32 {
+               self.0
+          }
+
+          fn last(&self) -> i32 {
+               self.1
+          }
+     }
+
+     //Just any C that has trait Contains
+     fn difference<C: Contains>(container: &C) -> i32 {
+          container.last() - container.first()
+     }
+
+     let container = Container(1, 3);
+     assert_eq!(2, difference(&container));
+}
+
 pub fn main() {
      intro();
      functions();
@@ -221,4 +262,5 @@ pub fn main() {
      multiple_bounds();
      where_clause();
      new_type_idiom();
+     associated_types();
 }
