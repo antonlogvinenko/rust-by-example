@@ -10,6 +10,7 @@ mod crates;
 mod cargo;
 mod attributes;
 mod generics;
+mod scoping_rules;
 
 //todo make code runnable?
 //todo better comments?
@@ -29,4 +30,5 @@ fn main() {
     cargo::main();
     attributes::main();
     generics::main();
+    scoping_rules::main();
 }
