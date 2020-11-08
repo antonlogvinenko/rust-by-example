@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 /**
  * Variables own resources.
  * When vairables goes out of scope, resource is destroyed.
@@ -121,16 +123,72 @@ fn ref_pattern() {
 }
 
 fn lifetimes() {
-     
+     //lifetime is determined by where variable is declared
+     //scope os is determined by where variable is used
+
+     //"<'a>": the lifetime of print_ref must not exceed the lifetime 'a
+     //"x: &'a i32": the lifetime of 'a is constrained by &a
+     //defaults to 'static if not constrained
+     fn _print_ref<'a>(x: &'a i32) {
+          println!("x is {}", x);
+     }
+
+     struct _Owner(i32);
+     impl _Owner {
+          fn _add_one<'a>(&'a mut self) {
+               self.0 += 1
+          }
+     }
+
+     struct _Borrowed<'a>(&'a i32);
+     struct _NamedBorrowed<'a> {
+          x: &'a i32,
+          y: &'a i32,
+     }
+     enum _Either<'a> {
+          Num(i32),
+          Ref(&'a i32),
+     }
+
+     impl<'a> Default for _Borrowed<'a> {
+          fn default() -> Self {
+               Self(&10)
+          }
+     }
+
+     //T: 'a  --  all references in T must outlive lifetime 'a
+     //T: Trait + 'a  --  type T implements Trait and all references in T must outlive 'a
+     fn _print_ref2<'a, T>(t: &'a T)
+     where
+          T: Debug + 'a,
+     {
+          println!("x is {:?}", t);
+     }
+
+     //A longer lifetime can be coerced into a shorter one
+     //Here, two lifetimes are coerced into the shorter one
+     fn multiply<'a>(first: &'a i32, second: &'a i32) -> i32 {
+          first * second
+     }
+     //Here, longer lifetime is coerced into a shoerter one to return the value
+     fn choose_first<'a: 'b, 'b>(first: &'a i32, _: &'b i32) -> &'b i32 {
+          first
+     }
+
+     let first = 3; //longer lifetime
+     {
+          let second = 4; //shorter lifetime
+          multiply(&first, &second);
+          choose_first(&first, &second);
+     }
+
 }
 
 pub fn main() {
      raii();
-     
      ownership_and_moves();
      moving_vs_borrowing();
      borrowing_vs_mutable_borrowing();
      ref_pattern();
-     
      lifetimes();
 }
