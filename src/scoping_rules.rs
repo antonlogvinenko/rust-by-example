@@ -174,7 +174,6 @@ fn lifetimes() {
      fn choose_first<'a: 'b, 'b>(first: &'a i32, _: &'b i32) -> &'b i32 {
           first
      }
-
      let first = 3; //longer lifetime
      {
           let second = 4; //shorter lifetime
@@ -182,6 +181,13 @@ fn lifetimes() {
           choose_first(&first, &second);
      }
 
+     //'static
+     //'static as a reference lifetime: data lives for the entire lifetime of the running program
+     //1. make a constant with the static declaration
+     static _NUM: i32 = 18;
+     //2. make a string literal which has type [&'static str]
+     let _static_string: &'static str = "read-only memory";
+     //'static as a trait bound means the type does not contain any non-static references
 }
 
 pub fn main() {
