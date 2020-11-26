@@ -39,14 +39,19 @@ fn idea() {
 
      let dolly: Sheep = Animal::new("Dolly");
      assert_eq!(false, dolly.is_naked());
-     assert_eq!("", dolly.name);
+     assert_eq!("Dolly", dolly.name);
 
      dolly.noise();
      dolly.talk();
 }
 
 fn derive() {
+     #[derive(PartialEq, PartialOrd)]
+     struct Centimiters(f64);
 
+     let x1 = Centimiters(1.0);
+     let x2 = Centimiters(2.0);
+     assert_eq!(true, x1 < x2);
 }
 
 pub fn main() {
