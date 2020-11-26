@@ -11,6 +11,7 @@ mod cargo;
 mod attributes;
 mod generics;
 mod scoping_rules;
+mod traits;
 
 //todo make code runnable?
 //todo better comments?
@@ -31,4 +32,5 @@ fn main() {
     attributes::main();
     generics::main();
     scoping_rules::main();
+    traits::main();
 }
