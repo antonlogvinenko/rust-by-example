@@ -38,12 +38,15 @@ fn idea() {
      }
 
      let dolly: Sheep = Animal::new("Dolly");
+     assert_eq!(false, dolly.is_naked());
+     assert_eq!("", dolly.name);
+
      dolly.noise();
      dolly.talk();
 }
 
 fn derive() {
-     
+
 }
 
 pub fn main() {
