@@ -38,8 +38,8 @@ fn idea() {
      }
 
      let dolly: Sheep = Animal::new("Dolly");
-     assert_eq!(false, dolly.is_naked());
-     assert_eq!("Dolly", dolly.name);
+     assert_eq!(dolly.is_naked(), false);
+     assert_eq!( dolly.name, "Dolly");
 
      dolly.noise();
      dolly.talk();
@@ -51,7 +51,7 @@ fn derive() {
 
      let x1 = Centimiters(1.0);
      let x2 = Centimiters(2.0);
-     assert_eq!(true, x1 < x2);
+     assert_eq!(x1 < x2, true);
 }
 
 fn operator_overloading() {
@@ -74,7 +74,7 @@ fn operator_overloading() {
      let foo = Foo;
      let foobar = foo + Bar;
 
-     assert_eq!(FooBar, foobar);
+     assert_eq!(foobar, FooBar);
 }
 
 fn drop() {
@@ -91,9 +91,57 @@ fn drop() {
      let _d = Droppable { name: "asd" };
 }
 
+fn iterators() {
+     struct Fibonacci {
+          curr: u32,
+          next: u32,
+     }
+
+     impl Iterator for Fibonacci {
+          type Item = u32;
+
+          fn next(&mut self) -> Option<u32> {
+               let new_next = self.curr + self.next;
+               self.curr = self.next;
+               self.next = new_next;
+               Some(self.curr)
+          }
+     }
+
+     //using interface directly
+     let mut sequence = 0..3;
+     assert_eq!(sequence.next().unwrap(), 0);
+     assert_eq!(sequence.next().unwrap(), 1);
+
+     //using interface indirectly
+     let mut x = 0;
+     for _ in 0..3 {
+          x += 1;
+     }
+     assert_eq!(x, 3);
+
+     //using manually defined interface directly
+     let fib = Fibonacci { curr: 0, next: 1 };
+     let p = fib.skip(3).take(1).next().unwrap();
+     assert_eq!(p, 3);
+
+     //using manually defined interface indirectly
+     for x in (Fibonacci { curr: 0, next: 1 }).take(3) {
+          println!("{}", x);
+     }
+
+     let array = [1u32, 3, 3, 7];
+     let mut y = 0;
+     for i in array.iter().skip(1).take(2) {
+          y += i;
+     }
+     assert_eq!(y, 6);
+}
+
 pub fn main() {
      idea();
      derive();
      operator_overloading();
      drop();
+     iterators();
 }
