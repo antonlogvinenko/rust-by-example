@@ -39,7 +39,7 @@ fn idea() {
 
      let dolly: Sheep = Animal::new("Dolly");
      assert_eq!(dolly.is_naked(), false);
-     assert_eq!( dolly.name, "Dolly");
+     assert_eq!(dolly.name, "Dolly");
 
      dolly.noise();
      dolly.talk();
@@ -138,10 +138,47 @@ fn iterators() {
      assert_eq!(y, 6);
 }
 
+fn impl_trait() {
+     use std::iter;
+     use std::vec::IntoIter;
+
+     //1. shorter types
+     fn _combine_vecs_explicit(
+          v: Vec<i32>,
+          u: Vec<i32>,
+     ) -> iter::Cycle<iter::Chain<IntoIter<i32>, IntoIter<i32>>> {
+          v.into_iter().chain(u.into_iter()).cycle()
+     }
+
+     fn combine_vecs_implicit(v: Vec<i32>, u: Vec<i32>) -> impl Iterator<Item = i32> {
+          v.into_iter().chain(u.into_iter()).cycle()
+     }
+
+     //2.1 types that can't be written: closures
+     let v1 = vec![1, 2, 3];
+     let v2 = vec![4, 5];
+
+     let mut v3 = combine_vecs_implicit(v1, v2);
+     assert_eq!(v3.next().unwrap(), 1);
+
+     fn make_adder_function(y: i32) -> impl Fn(i32) -> i32 {
+          let closure = move |x: i32| x + y;
+          closure
+     }
+     assert_eq!(make_adder_function(5)(4), 9);
+
+     //2.2 types that can't be written: intermediate iterators
+     fn double_positives<'a>(numbers: &'a Vec<i32>) -> impl Iterator<Item = i32> + 'a {
+          numbers.iter().filter(|x| x > &&0).map(|x| x * 2)
+     }
+     assert_eq!(double_positives(&vec![1, 2, 3]).nth(1).unwrap(), 4);
+}
+
 pub fn main() {
      idea();
      derive();
      operator_overloading();
      drop();
      iterators();
+     impl_trait();
 }
