@@ -225,6 +225,43 @@ fn supertraits() {
      }
 }
 
+fn overlapping_traits() {
+     struct Form {
+          username: String,
+          age: u8,
+     }
+
+     trait UsernameWidget {
+          fn get(&self) -> String;
+     }
+
+     trait AgeWidget {
+          fn get(&self) -> u8;
+     }
+
+     impl UsernameWidget for Form {
+          fn get(&self) -> String {
+               self.username.clone()
+          }
+     }
+
+     impl AgeWidget for Form {
+          fn get(&self) -> u8 {
+               self.age
+          }
+     }
+
+     let form = Form {
+          username: "rustacean".to_owned(),
+          age: 28
+     };
+     assert_eq!(<Form as UsernameWidget>::get(&form), "rustacean");
+     assert_eq!(<Form as AgeWidget>::get(&form), 28);
+
+     assert_eq!(UsernameWidget::get(&form), "rustacean");
+     assert_eq!(AgeWidget::get(&form), 28);
+}
+
 pub fn main() {
      idea();
      derive();
@@ -234,4 +271,5 @@ pub fn main() {
      impl_trait();
      clone();
      supertraits();
+     overlapping_traits();
 }
