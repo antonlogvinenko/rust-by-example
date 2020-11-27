@@ -54,7 +54,46 @@ fn derive() {
      assert_eq!(true, x1 < x2);
 }
 
+fn operator_overloading() {
+     use std::ops;
+
+     struct Foo;
+     struct Bar;
+
+     impl ops::Add<Bar> for Foo {
+          type Output = FooBar;
+
+          fn add(self, _rhs: Bar) -> FooBar {
+               FooBar
+          }
+     }
+
+     #[derive(PartialEq, Debug)]
+     struct FooBar;
+
+     let foo = Foo;
+     let foobar = foo + Bar;
+
+     assert_eq!(FooBar, foobar);
+}
+
+fn drop() {
+     struct Droppable {
+          name: &'static str,
+     };
+
+     impl Drop for Droppable {
+          fn drop(&mut self) {
+               println!("> Dropping {}", self.name);
+          }
+     }
+
+     let _d = Droppable { name: "asd" };
+}
+
 pub fn main() {
      idea();
      derive();
+     operator_overloading();
+     drop();
 }
