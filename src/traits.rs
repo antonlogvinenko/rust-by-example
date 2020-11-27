@@ -174,6 +174,29 @@ fn impl_trait() {
      assert_eq!(double_positives(&vec![1, 2, 3]).nth(1).unwrap(), 4);
 }
 
+fn clone() {
+     #[derive(Debug, PartialEq)]
+     struct Unit1;
+     let unit11 = Unit1;
+     let _unit12 = unit11;
+     //Can't use unit11: it was moved
+     // assert_eq!(unit11, Unit1);
+
+     #[derive(Debug, PartialEq, Clone, Copy)]
+     struct Unit2;
+     let unit21 = Unit2;
+     let _unit22 = unit21;
+     //Can use unit21: it was copied, not moved
+     assert_eq!(unit21, Unit2);
+
+     #[derive(Debug, PartialEq, Clone, Copy)]
+     struct Unit3;
+     let unit31 = Unit3;
+     let _unit32 = unit31.clone();
+     //Can use unit31: it was cloned, not moved
+     assert_eq!(unit31, Unit3);
+}
+
 pub fn main() {
      idea();
      derive();
@@ -181,4 +204,5 @@ pub fn main() {
      drop();
      iterators();
      impl_trait();
+     clone();
 }
