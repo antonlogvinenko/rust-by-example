@@ -12,6 +12,7 @@ mod attributes;
 mod generics;
 mod scoping_rules;
 mod traits;
+mod macro_rules;
 
 //todo make code runnable?
 //todo better comments?
@@ -33,4 +34,5 @@ fn main() {
     generics::main();
     scoping_rules::main();
     traits::main();
+    macro_rules::main();
 }
