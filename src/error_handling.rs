@@ -96,20 +96,84 @@ fn result() {
 }
 
 fn multiple_error_types() {
-     //converting Option to Result
-     //option.ok_or
-     //option.map_or
+     use std::error;
+     use std::fmt;
 
-     //replacing errors with specific error type
+     #[derive(Debug, Clone, PartialEq, Copy)]
+     struct Error;
+
+     impl fmt::Display for Error {
+          fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+               write!(f, "invalid first item to double")
+          }
+     }
+
+     impl error::Error for Error {};
+
+     //1. Converting Option to Result
      //option.ok_or
+     let option1 = Some(32);
+     let _result1 = option1.ok_or(Error);
+
+     //2. Replacing different errors with one specific error
      //result.map_err
+     let y = "cake".parse::<i32>().map_err(|_| Error);
+     assert_eq!(y, Err(Error));
 
-     //boxing errors
+     //3.1. Boxing errors
      //error.into()
+     type Result<T> = std::result::Result<T, Box<dyn error::Error>>;
+     let y2: Result<i32> = "cake".parse::<i32>().map_err(|e| e.into());
+     let y3: Result<i32> = Some(42).ok_or_else(|| Error.into());
+     assert_eq!(y2.is_err(), true);
+     assert_eq!(y3.is_ok(), true);
 
-     //auto boxing errors with ?
+     //3.2. Boxing errors + ?
+     fn auto_box() -> Result<i32> {
+          let x = "cake".parse::<i32>()?;
+          Ok(x + 1)
+     }
+     assert_eq!(auto_box().is_err(), true);
 
-     //wrapping errors
+     //4. Wrapping errors + ?
+     use std::num::ParseIntError;
+     type WrappingResult<T> = std::result::Result<T, WrappingError>;
+     #[derive(Debug)]
+     enum WrappingError {
+          Parse(ParseIntError),
+     }
+     impl From<ParseIntError> for WrappingError {
+          fn from(err: ParseIntError) -> WrappingError {
+               WrappingError::Parse(err)
+          }
+     }
+     fn convert() -> WrappingResult<i32> {
+          let parsed = "qweqew".parse::<i32>()?;
+          Ok(2 * parsed)
+     }
+     let r: WrappingResult<i32> = convert();
+     assert_eq!(r.is_err(), true);
+}
+
+fn iterating_over_results() {
+     //Fail the entire operation
+     let strings1 = vec!["tofu", "93", "18"];
+     let _numbers1: Result<Vec<_>, _> = strings1.into_iter().map(|s| s.parse::<i32>()).collect();
+
+     //Filter out failures
+     let strings2 = vec!["tofu", "93", "18"];
+     let _numbers2: Vec<_> = strings2
+          .into_iter()
+          .map(|s| s.parse::<i32>())
+          .filter_map(Result::ok)
+          .collect();
+
+     //Collect and group
+     let strings = vec!["tofu", "93", "18"];
+     let (_numbers, _errors): (Vec<_>, Vec<_>) = strings
+          .into_iter()
+          .map(|s| s.parse::<i32>())
+          .partition(Result::is_ok);
 }
 
 pub fn main() {
@@ -117,4 +181,5 @@ pub fn main() {
      option();
      result();
      multiple_error_types();
+     iterating_over_results();
 }
