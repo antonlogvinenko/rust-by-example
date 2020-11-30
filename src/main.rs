@@ -14,6 +14,7 @@ mod scoping_rules;
 mod traits;
 mod macro_rules;
 mod error_handling;
+mod std_library_types;
 
 //todo make code runnable?
 //todo better comments?
@@ -37,4 +38,5 @@ fn main() {
     traits::main();
     macro_rules::main();
     error_handling::main();
+    std_library_types::main();
 }
