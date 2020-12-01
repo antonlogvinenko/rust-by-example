@@ -1,3 +1,5 @@
+use std::hash::Hash;
+
 fn boxing() {
      use std::mem;
 
@@ -85,8 +87,59 @@ fn strings() {
      //literal features are applicable to byte strings (br or br# for raw)
 }
 
+fn hash_map() {
+     use std::collections::HashMap;
+
+     let mut map: HashMap<&str, i32> = HashMap::new();
+     map.insert("a", 1);
+     map.insert("b", 2);
+     assert_eq!(map.get("a"), Some(&1));
+     assert_eq!(map.get("c"), None);
+     map.remove("a");
+     assert_eq!(map.get("a"), None);
+
+     for (k, &v) in map.iter() {
+          println!("{} {}", k, v);
+     }
+
+     //implement Eq and Hash for type to be Key
+     //collections implement Eq and Hash if their elements do
+}
+
+fn hash_set() {
+     fn hashset<T: Eq + Hash>(x: Vec<T>) -> HashSet<T> {
+          x.into_iter().collect()
+     }
+
+     use std::collections::HashSet;
+
+     let _a: HashSet<i32> = hashset(vec![1, 2, 3]);
+     let _b: HashSet<i32> = hashset(vec![2, 3, 4]);
+
+     let _union: HashSet<i32> = hashset(vec![1, 2, 3, 4]);
+     let _intersection = hashset(vec![2, 3]);
+     let _a_minus_b = hashset(vec![1i32, 4]);
+     let _sym_dif = hashset(vec![1, 4]);
+}
+
+fn reference_counting() {
+     //Arc: Rc for shared ownership between threads
+     use std::rc::Rc;
+     let x = 42;
+     let rc = Rc::new(x);
+     assert_eq!(Rc::strong_count(&rc), 1);
+     {
+          let _cloned = rc.clone();
+          assert_eq!(Rc::strong_count(&rc), 2);
+     }
+     assert_eq!(Rc::strong_count(&rc), 1);
+}
+
 pub fn main() {
      boxing();
      vectors();
      strings();
+     hash_map();
+     hash_set();
+     reference_counting();
 }
