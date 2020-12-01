@@ -11,6 +11,11 @@
 
 //public structs with private fields can't be constructed using field names
 
+//When you're inside mod tree then:
+//1. You see all objects of your ancesters
+//2.1 You can see objects in descendants if all objects in path are pub
+//2.2 pub(X) may add additional restriction for ancestors
+
 mod my_mod {
 
      fn _private_function() {}
