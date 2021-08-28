@@ -2,7 +2,7 @@
 Code from Rust by Example. Readme summary from the Rust Book.
 
 ## Ownership & borrowing
-### Ownership & Copy vs Move
+#### Ownership & Copy vs Move
 * known size => stack, unknown stack => heap; tradeoffs
 * ownership is introduced for managing heap data (freeing memory, but only freeing once)
 * ownership extended for all types
@@ -14,9 +14,9 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * ??? add here: mutability change
   * ??? add here: destructor call vs freeing memory
 
-### Borrowing
+#### Borrowing
 	modes & intersection, chain of mut, rebinding, scope vs lifetime
-### Constants
+#### Constants
 
 ## Modules
 * Package -> crate -> module
