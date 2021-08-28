@@ -49,9 +49,9 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
  * !!! Conditional method implementation: fixed type, trait bound
 * Lifetimes
  * why, !!! functions, !!! structs, !!! methods, !!! lifetime elision, static lifetime
-- Trait objects
-  - 'T: Trait' vs 'T: dyn Trait' (or 'T: Trait')
-  - object safety
+* Trait objects
+  * 'T: Trait' vs 'T: dyn Trait' (or 'T: Trait')
+  * object safety
 * "impl" for traits redefines T and 'a
 
 ## Iterators
@@ -77,50 +77,49 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 #### RefCell, interior mutability, i.e. &+&mut+Box+runtimechecks
 * borrow + Ref, borrow_mut + RefMut
 																																																																														    
-																																																																															
-																																																																															== Concurrency
-																																																																															 - threads: spawn, sleep, join, move
-																																																																															  - channels
-																																																																															      - send, recv, try_recv
-																																																																																      - ownership transfer
-																																																																																	      - receiving via iterator
-																																																																																		      - cloning transmitter
-																																																																																			   - shared state concurrency
-																																																																																			       - Mutex, lock, LockResult<MutexGuard, Err>
-																																																																																				       - Drop&Deref implementation
-																																																																																					       - Arc
-																																																																																						    - Send & Sync
-																																																																																							    - T: Send = T can be sent to another thread
-																																																																																								    - T: Sync = T is safe to be referenced from another thread (&T implements Send)
-																																																																																									        - Types that consist of types that are Sync, are Sync themselves
-																																																																																											
-																																																																																											== Pattern matching
-																																																																																											    - refutable vs irrefutable
-																																																																																												    - syntax
-																																																																																													        - literals, variables
-																																																																																															        - multiple patterns, ranges
-																																																																																																	        - destructuring structs, enums, nested
-																																																																																																			        - ignoring values: _, nested _,  unused-variable, ..
-																																																																																																					        - extra conditionals
-																																																																																																							        - @ bindings
-																																																																																																									
-																																																																																																									== Advanced features
-																																																																																																									    - Unsafe Rust
-																																																																																																										        - why: conservative static checks & low level standard libraries
-																																																																																																												        - 5 features
-																																																																																																														        - unsafe block: isolation
-																																																																																																																    - dereferencing a raw pointer
-																																																																																																																	        - ignore borrowing rules
-																																																																																																																			        - possibly invalid memory
-																																																																																																																					        - can be null
-																																																																																																																							        - no automatic cleanup
-																																																																																																																									    - calling unsafe function or method
-																																																																																																																										        - what is unsafe function
-																																																																																																																												        - creating safe abstraction
-																																																																																																																														        - extern functions
-																																																																																																																																    - accessing/modifying static variable
-																																																																																																																																	    - implementing unsafe trait
-																																																																																																																																		    - accessing union fields
+## Concurrency
+#### threads: spawn, sleep, join, move
+#### channels
+* send, recv, try_recv
+* ownership transfer
+* receiving via iterator
+* cloning transmitter
+#### shared state concurrency 
+* Mutex, lock, LockResult<MutexGuard, Err>
+* Drop&Deref implementation
+* Arc
+#### Send & Sync
+* T: Send = T can be sent to another thread
+* T: Sync = T is safe to be referenced from another thread (&T implements Send)
+  * Types that consist of types that are Sync, are Sync themselves
+
+## Pattern matching
+* refutable vs irrefutable
+* syntax
+  * literals, variables
+  * multiple patterns, ranges
+  * destructuring structs, enums, nested
+  * ignoring values: _, nested _,  unused-variable, ..
+  * extra conditionals
+  * @ bindings
+
+## Advanced features
+#### Unsafe Rust
+* why: conservative static checks & low level standard libraries
+* unsafe block: isolation
+* 5 features
+  * Dereferencing a raw pointer
+	* ignore borrowing rules
+	* possibly invalid memory
+	* can be null
+	* no automatic cleanup
+  * Calling unsafe function or method
+	* what is unsafe function
+	* creating safe abstraction
+	* extern functions
+  * accessing/modifying static variable
+  * implementing unsafe trait
+  * accessing union fields
 																																																																																																																																			
 																																																																																																																																			    - advanced traits
 																																																																																																																																				        - associated type: allow only one implementation of a trait for a type
