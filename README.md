@@ -78,7 +78,8 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 * borrow + Ref, borrow_mut + RefMut
 																																																																														    
 ## Concurrency
-#### threads: spawn, sleep, join, move
+#### threads
+* spawn, sleep, join, move
 #### channels
 * send, recv, try_recv
 * ownership transfer
@@ -103,7 +104,10 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
   * extra conditionals
   * @ bindings
 
+
+
 ## Advanced features
+
 #### Unsafe Rust
 * why: conservative static checks & low level standard libraries
 * unsafe block: isolation
@@ -120,36 +124,36 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
   * accessing/modifying static variable
   * implementing unsafe trait
   * accessing union fields
-																																																																																																																																			
-																																																																																																																																			    - advanced traits
-																																																																																																																																				        - associated type: allow only one implementation of a trait for a type
-																																																																																																																																						        - default generic parameters and operator overloading
-																																																																																																																																								        - disambiguation:
-																																																																																																																																										            - passing self to specific interface
-																																																																																																																																													            - casting variable <Type as Trait>::method_name()
-																																																																																																																																																        - using supertraits
-																																																																																																																																																		        - newtype pattern to overcome orphan rule
-																																																																																																																																																				    - advanced types
-																																																																																																																																																					        - newtype
-																																																																																																																																																							            - avoid confusion with units
-																																																																																																																																																										            - expose different API
-																																																																																																																																																													        - type synonyms: "type" to reduce repetition
-																																																																																																																																																															        - type that never returns: ! can be coerced to any other type
-																																																																																																																																																																	        - DST types
-																																																																																																																																																																			            - must know size
-																																																																																																																																																																						            - Sized trait (auto implemented if all components are Sized)
-																																																																																																																																																																									            - T is treated as T: Sized; use ?Sized for both known and not known sizes
-																																																																																																																																																																												            - DST have extra bit of data to specify length
-																																																																																																																																																																															            - otherwise put behind a pointer of some kind
-																																																																																																																																																																																		    - advanced functions and closures
-																																																																																																																																																																																			        - function pointers
-																																																																																																																																																																																					            - fn() -> type: for both functions and closures
-																																																																																																																																																																																								            - functions: all of Fn, FnMut, FnOnce, closures: some of them
-																																																																																																																																																																																											        - returning closures
-																																																																																																																																																																																													            - return Box<dyn Fn(i32) -> i32>
-																																																																																																																																																																																																
-																																																																																																																																																																																																    - macros
-																																																																																																																																																																																																	        - declarative
-																																																																																																																																																																																																			        - procedural
-																																																																																																																																																																																																					            - derive & attribute-like
-																																																																																																																																																																																																								            - function-like
+
+#### Advanced traits
+* associated type: allow only one implementation of a trait for a type
+* default generic parameters and operator overloading
+* disambiguation
+  * passing self to specific interface
+  * casting variable <Type as Trait>::method_name()
+* using supertraits
+* newtype pattern to overcome orphan rule
+
+#### Aadvanced types
+* Newtype
+  * Avoid confusion with units
+  * Expose different API
+* Type synonyms: "type" to reduce repetition
+* Type that never returns: ! can be coerced to any other type
+* DST types
+  * must know size
+  * Sized trait (auto implemented if all components are Sized)
+  * T is treated as T: Sized; use ?Sized for both known and not known sizes
+  * DST have extra bit of data to specify length
+  * otherwise put behind a pointer of some kind
+* Advanced functions and closures
+  * function pointers
+	* fn() -> type: for both functions and closures
+	* functions: all of Fn, FnMut, FnOnce, closures: some of them
+  * returning closures
+	* return Box<dyn Fn(i32) -> i32>
+* Macros
+  * declarative
+  * procedural
+	* derive & attribute-like
+	* function-like
