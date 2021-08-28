@@ -9,16 +9,19 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * stack data: just copying (types already implement `Copy`)
   * stack + heap data: static checks of ownership moves
   * stack + head data that implements `Copy`: just copying (`Drop` forbidden)
+* Details
+  * Moving out of `&` or `&mut` (in pattern matching) requires `Copy`
   * ??? does `Copy` mean stack allocated? Could be
   * ??? refs are like 1 but can't always be freely copied
   * ??? add here: mutability change
   * ??? add here: destructor call vs freeing memory
-  * Moving out of &: "fn print_coordinates(&(x, y): &(i32, i32)) {" - only if Copy is implemented?  
 
 #### Borrowing
 modes & intersection, chain of mut, rebinding, scope vs lifetime
 
 #### Constants
+
+
 
 ## Modules
 * Package -> crate -> module
@@ -35,11 +38,15 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 * !!! `pub use` to use with public visibility (reorganise structure for API)
 * Release profiles
 * Workspaces (cross deps, external deps versions)
-																																																													
+
+
+
 ## Errors
 * ? Operator and function type
 * Implement `Try` (`Result`, `Option` etc)
 * `Error`: from method
+
+
 
 ## Generics, traits, lifetimes
 * Generics
@@ -55,9 +62,13 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
   * object safety
 * `impl` for traits redefines T and 'a
 
+
+
 ## Iterators
 * Iterator adapters (modify iterator) and consuming adaptors (move iterator in)
 * `iter`, `iter_mut`, `into_iter` for marking ownership mode for original values
+
+
 
 ## Smart pointers
 #### Box
@@ -77,7 +88,9 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 * `Weak`: `downgrade`/`upgrade`, `weak_count`/`strong_count`
 #### RefCell, interior mutability, i.e. &+&mut+Box+runtimechecks
 * borrow + Ref, borrow_mut + RefMut
-																																																																														    
+
+
+
 ## Concurrency
 #### threads
 * spawn, sleep, join, move
@@ -160,3 +173,12 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
   * procedural
 	* derive & attribute-like
 	* function-like
+
+```rust
+struct GenVal<T>(T);
+impl<T> GenVal<T> {
+	fn value(&self) -> &T {
+		&self.0
+	}
+}
+```
