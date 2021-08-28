@@ -56,7 +56,7 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 
 ## Iterators
 * Iterator adapters (modify iterator) and consuming adaptors (move iterator in)
-* iter, iter_mut, into_iter for marking ownership mode for original values
+* `iter`, `iter_mut`, `into_iter` for marking ownership mode for original values
 
 ## Smart pointers
 #### Box
@@ -132,14 +132,14 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
   * passing self to specific interface
   * casting variable <Type as Trait>::method_name()
 * using supertraits
-* newtype pattern to overcome orphan rule
+* `newtype` pattern to overcome orphan rule
 
 #### Aadvanced types
-* Newtype
+* `newtype`
   * Avoid confusion with units
   * Expose different API
-* Type synonyms: "type" to reduce repetition
-* Type that never returns: ! can be coerced to any other type
+* Type synonyms: `type` to reduce repetition
+* Type that never returns: `!` can be coerced to any other type
 * DST types
   * must know size
   * Sized trait (auto implemented if all components are Sized)
