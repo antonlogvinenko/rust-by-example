@@ -49,9 +49,9 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
  * !!! Conditional method implementation: fixed type, trait bound
 * Lifetimes
  * why, !!! functions, !!! structs, !!! methods, !!! lifetime elision, static lifetime
-* Trait objects
-  * - 'T: Trait' vs 'T: dyn Trait' (or 'T: Trait')
-  * - object safety
+- Trait objects
+  - 'T: Trait' vs 'T: dyn Trait' (or 'T: Trait')
+  - object safety
 * "impl" for traits redefines T and 'a
 
 ## Iterators
