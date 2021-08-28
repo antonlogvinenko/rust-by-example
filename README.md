@@ -11,12 +11,11 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * stack + heap data: static checks of ownership moves
   * stack + head data that implements `Copy`: just copying (`Drop` forbidden)
 * Details
-  * Moving out of `&` or `&mut` (in pattern matching) requires `Copy`
   * Mutability can be changed when taking ownership (really, why not)
-  * 
-  * ??? does `Copy` mean stack allocated? Could be
-  * ??? refs are like 1 but can't always be freely copied
-  * ??? add here: destructor call vs freeing memory
+  * Copy means fast copying
+  * `Copy` derived by compiler if all components are `Copy`
+  * Moving out of `&` or `&mut` (in pattern matching) requires `Copy`
+
 
 #### Borrowing
 modes & intersection, chain of mut, rebinding, scope vs lifetime
