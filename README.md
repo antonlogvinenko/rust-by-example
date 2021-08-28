@@ -174,6 +174,8 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 	* derive & attribute-like
 	* function-like
 
+<details>
+<summary>code sample</summary>
 ```rust
 struct GenVal<T>(T);
 impl<T> GenVal<T> {
@@ -182,3 +184,4 @@ impl<T> GenVal<T> {
 	}
 }
 ```
+<details>
