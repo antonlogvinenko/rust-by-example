@@ -1,8 +1,8 @@
 # rust-by-example
-Samples from Rust by Example book
+Code from Rust by Example. Readme summary from the Rust Book.
 
 ## Ownership & borrowing
-### ownership & copy vs move
+### Ownership & Copy vs Move
 * known size => stack, unknown stack => heap; tradeoffs
 * ownership is introduced for managing heap data (freeing memory, but only freeing once)
 * ownership extended for all types
@@ -14,33 +14,25 @@ Samples from Rust by Example book
   * ??? add here: mutability change
   * ??? add here: destructor call vs freeing memory
 
-### borrowing
+### Borrowing
 	modes & intersection, chain of mut, rebinding, scope vs lifetime
-### constants
-																																    
-																																	
-																																	    closures
-																																		    strings and arrays
-																																			    error handlers
-																																				    dyn impl
-																																					    how much flexible impl restrictions are
-																																						    async
-																																							
-																																							Modules
-																																							    Package -> crate -> module
-																																								    Binary/lib crates
-																																									    Path, visibility (!! pub or sibling), use
-																																										    !!! Visibility rules:
-																																											        1. See everything in ancestors
-																																													        2. See on pub path in descendants (pub(X) may add additional restrictions)
-																																															    !!! Separate module files:
-																																																        0. Use 'mod' to include files
-																																																		        1. 'foo' is foo.rs or foo/mod.rs
-																																																				        2. 'foo/bar' is foo/bar.rs
-																																																						        ???? foo/bar/mod.rs is foo/bar too?
-																																																								    !!! pub use to use with public visibility (reorganise structure for API)
-																																																									    Release profiles
-																																																										    Workspaces (cross deps, external deps versions)
+### Constants
+
+## Modules
+* Package -> crate -> module
+* Binary/lib crates
+* Path, visibility (!! pub or sibling), use
+* Visibility rules
+  * See everything in ancestors
+  * See on pub path in descendants (pub(X) may add additional restrictions)
+* Separate module files
+ * Use 'mod' to include files
+ * 'foo' is foo.rs or foo/mod.rs
+ * 'foo/bar' is foo/bar.rs
+ * ???? foo/bar/mod.rs is foo/bar 
+* `pub use` to use with public visibility (reorganise structure for API)
+* Release profiles
+* Workspaces (cross deps, external deps versions)
 																																																											        
 																																																													
 																																																													=== Cargo tips:
