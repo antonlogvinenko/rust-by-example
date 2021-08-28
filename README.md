@@ -15,74 +15,67 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * ??? add here: destructor call vs freeing memory
 
 #### Borrowing
-	modes & intersection, chain of mut, rebinding, scope vs lifetime
+modes & intersection, chain of mut, rebinding, scope vs lifetime
+
 #### Constants
 
 ## Modules
 * Package -> crate -> module
 * Binary/lib crates
 * Path, visibility (!! pub or sibling), use
-* Visibility rules
+* !!! Visibility rules
   * See everything in ancestors
   * See on pub path in descendants (pub(X) may add additional restrictions)
-* Separate module files
+* !!! Separate module files
  * Use 'mod' to include files
  * 'foo' is foo.rs or foo/mod.rs
  * 'foo/bar' is foo/bar.rs
  * ???? foo/bar/mod.rs is foo/bar 
-* `pub use` to use with public visibility (reorganise structure for API)
+* !!! `pub use` to use with public visibility (reorganise structure for API)
 * Release profiles
 * Workspaces (cross deps, external deps versions)
-																																																											        
 																																																													
-																																																													=== Cargo tips:
-																																																													cargo check
-																																																													
-																																																													== errors
-																																																													? Operator and function type
-																																																													1. Implement Try (Result, Option etc)
-																																																													2. Error: from method
-																																																													
-																																																													== generics, traits, lifetimes
-																																																													Generics:
-																																																													    functions, structs, enums, methods
-																																																														Traits:
-																																																														    define, implement, default methods
-																																																															    as param/return values (impl and bound syntax, also +, also where) !!!
-																																																																    !!! Conditional method implementation: fixed type, trait bound
-																																																																	Lifetimes:
-																																																																	    why, !!! functions, !!! structs, !!! methods, !!! lifetime elision, static lifetime
-																																																																		
-																																																																		Trait objects
-																																																																		    - 'T: Trait' vs 'T: dyn Trait' (or 'T: Trait')
-																																																																			    - object safety
-																																																																				
-																																																																				"impl" for traits redefines T and 'a
-																																																																				
-																																																																				
-																																																																				=== Iterators
-																																																																				Iterator adapters (modify iterator) and consuming adaptors (move iterator in)
-																																																																				iter, iter_mut, into_iter for marking ownership mode for original values
-																																																																				
-																																																																				
-																																																																				== Smart pointers
-																																																																				 - Box
-																																																																				    - unknown size (unknown type or recursive type)
-																																																																					   - unspecified type inside (that only implements specific traits)
-																																																																					      - transfer data while insured that data will be moved not copied
-																																																																						   - Deref
-																																																																						      - deref returns a reference
-																																																																							     - *x -> *(x.deref())
-																																																																								    - autodereference with * for methods, i.e. rewrites: x => *x => *(x.deref())
-																																																																									 - Drop
-																																																																									    - logic
-																																																																										   - mom::std::drop
-																																																																										    - RC, reference counting, multiple ownership, i.e. ownership+Box
-																																																																											   - clone() to increase counter
-																																																																											      - Drop trait to decrease counter (and cleanup owned resource when 0)
-																																																																												     - Weak: downgrade/upgrade, weak_count/strong_count
-																																																																													  - RefCell, interior mutability, i.e. &+&mut+Box+runtimechecks
-																																																																													     - borrow + Ref, borrow_mut + RefMut
+## Errors
+* ? Operator and function type
+* Implement Try (Result, Option etc)
+* Error: from method
+
+## Generics, traits, lifetimes
+* Generics
+  * functions, structs, enums, methods
+* Traits
+ * define, implement, default methods
+ * as param/return values (impl and bound syntax, also +, also where) !!!
+ * !!! Conditional method implementation: fixed type, trait bound
+* Lifetimes
+ * why, !!! functions, !!! structs, !!! methods, !!! lifetime elision, static lifetime
+* Trait objects
+  * - 'T: Trait' vs 'T: dyn Trait' (or 'T: Trait')
+  * - object safety
+* "impl" for traits redefines T and 'a
+
+## Iterators
+* Iterator adapters (modify iterator) and consuming adaptors (move iterator in)
+* iter, iter_mut, into_iter for marking ownership mode for original values
+
+## Smart pointers
+#### Box
+* unknown size (unknown type or recursive type)
+* unspecified type inside (that only implements specific traits)
+* transfer data while insured that data will be moved not copied
+#### Deref
+* deref returns a reference
+* *x -> *(x.deref())
+* autodereference with * for methods, i.e. rewrites: x => *x => *(x.deref())
+#### Drop
+* logic
+* mom::std::drop
+#### RC, reference counting, multiple ownership, i.e. ownership+Box
+* clone() to increase counter
+* Drop trait to decrease counter (and cleanup owned resource when 0)
+* Weak: downgrade/upgrade, weak_count/strong_count
+#### RefCell, interior mutability, i.e. &+&mut+Box+runtimechecks
+* borrow + Ref, borrow_mut + RefMut
 																																																																														    
 																																																																															
 																																																																															== Concurrency
