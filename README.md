@@ -6,7 +6,7 @@ Samples from Rust by Example book
 * known size => stack, unknown stack => heap; tradeoffs
 * ownership is introduced for managing heap data (freeing memory, but only freeing once)
 * ownership extended for all types
-** stack data: just copying (types already implement Copy)
+  * stack data: just copying (types already implement Copy)
 ** stack + heap data: static checks of ownership moves
 ** stack + head data that implements Copy: just copying (Drop forbidden)
 ** ??? does Copy mean stack allocated? Could be
