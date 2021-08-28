@@ -1,4 +1,4 @@
-# rust-by-example
+# Rust book and Rust by Example book summary
 Code from Rust by Example. Readme summary from the Rust Book.
 
 ## Ownership & borrowing
@@ -27,10 +27,10 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
   * See everything in ancestors
   * See on pub path in descendants (pub(X) may add additional restrictions)
 * !!! Separate module files
- * Use 'mod' to include files
- * 'foo' is foo.rs or foo/mod.rs
- * 'foo/bar' is foo/bar.rs
- * ???? foo/bar/mod.rs is foo/bar 
+  * Use 'mod' to include files
+  * 'foo' is foo.rs or foo/mod.rs
+  * 'foo/bar' is foo/bar.rs
+  * ???? foo/bar/mod.rs is foo/bar 
 * !!! `pub use` to use with public visibility (reorganise structure for API)
 * Release profiles
 * Workspaces (cross deps, external deps versions)
