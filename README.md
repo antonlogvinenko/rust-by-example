@@ -3,7 +3,8 @@ Code from Rust by Example. Readme summary from the Rust Book.
 
 ## Ownership & borrowing
 #### Ownership & Copy vs Move
-* known size => stack, unknown stack => heap; tradeoffs
+* known size => stack, unknown stack => heap
+* tradeoffs: stack is fast but restricted, heap is slower but more versatile
 * ownership is introduced for managing heap data (freeing memory, but only freeing once)
 * ownership extended for all types
   * stack data: just copying (types already implement `Copy`)
@@ -11,9 +12,10 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * stack + head data that implements `Copy`: just copying (`Drop` forbidden)
 * Details
   * Moving out of `&` or `&mut` (in pattern matching) requires `Copy`
+  * Mutability can be changed when taking ownership (really, why not)
+  * 
   * ??? does `Copy` mean stack allocated? Could be
   * ??? refs are like 1 but can't always be freely copied
-  * ??? add here: mutability change
   * ??? add here: destructor call vs freeing memory
 
 #### Borrowing
