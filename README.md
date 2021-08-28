@@ -13,6 +13,7 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * ??? refs are like 1 but can't always be freely copied
   * ??? add here: mutability change
   * ??? add here: destructor call vs freeing memory
+  
 
 #### Borrowing
 modes & intersection, chain of mut, rebinding, scope vs lifetime
