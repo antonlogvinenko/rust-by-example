@@ -177,6 +177,7 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 <details>
 <summary>code sample</summary>
 <p>
+
 ```rust
 struct GenVal<T>(T);
 impl<T> GenVal<T> {
@@ -185,5 +186,6 @@ impl<T> GenVal<T> {
 	}
 }
 ```
+
 </p>
 <details>
