@@ -2,20 +2,20 @@
 Samples from Rust by Example book
 
 ## Ownership & borrowing
-	### ownership & copy vs move
-	        known size => stack, unknown stack => heap; tradeoffs
-			ownership is introduced for managing heap data (freeing memory, but only freeing once)
-			ownership extended for all types
-				1) stack data: just copying (types already implement Copy)
-				2) stack + heap data: static checks of ownership moves
-				3) stack + head data that implements Copy: just copying (Drop forbidden)
-				??? does Copy mean stack allocated? Could be
-				??? refs are like 1 but can't always be freely copied
-				??? add here: mutability change
-				??? add here: destructor call vs freeing memory
-	### borrowing
-		modes & intersection, chain of mut, rebinding, scope vs lifetime
-	### constants
+### ownership & copy vs move
+        known size => stack, unknown stack => heap; tradeoffs
+		ownership is introduced for managing heap data (freeing memory, but only freeing once)
+		ownership extended for all types
+			1) stack data: just copying (types already implement Copy)
+			2) stack + heap data: static checks of ownership moves
+			3) stack + head data that implements Copy: just copying (Drop forbidden)
+			??? does Copy mean stack allocated? Could be
+			??? refs are like 1 but can't always be freely copied
+			??? add here: mutability change
+			??? add here: destructor call vs freeing memory
+### borrowing
+	modes & intersection, chain of mut, rebinding, scope vs lifetime
+### constants
 																																    
 																																	
 																																	    closures
