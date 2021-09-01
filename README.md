@@ -66,8 +66,9 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
   * `T: Trait` vs `T: dyn Trait` (or `T: Trait`)
   * object safety
 * `impl` for traits redefines T and 'a
-https://stackoverflow.com/questions/57754901/what-is-a-fat-pointer
-https://stackoverflow.com/questions/67767207/why-are-trait-methods-with-generic-type-parameters-object-unsafe
+
+* https://stackoverflow.com/questions/57754901/what-is-a-fat-pointer
+* https://stackoverflow.com/questions/67767207/why-are-trait-methods-with-generic-type-parameters-object-unsafe
 
 
 
