@@ -13,6 +13,7 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * Mutability can be changed when taking ownership (why not)
   * Copy means fast copying
   * `Copy` derived (and allowed) by compiler if and only if all components are `Copy`
+  * `Copy` and `Drop` types can't be both implemented for the same type
   * Moving out of `&` or `&mut` (in pattern matching) requires `Copy`
 
 
@@ -20,7 +21,10 @@ Code from Rust by Example. Readme summary from the Rust Book.
 modes & intersection, chain of mut, rebinding, scope vs lifetime
 
 #### Constants
-
+* `const` keyword and `mut` not allowed
+* type annotation required
+* can be declared in any scope
+* can only be set to a constant expression
 
 
 ## Modules
@@ -182,9 +186,24 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 	* derive & attribute-like
 	* function-like
 
+
+Generics available in: Types, traits, functions, impl methods, impl traits
+All of them introduce generic type parameters with restrictions (where or in-place)
+
 <details>
 <summary>code sample</summary>
 
+```rust
+struct GenVal<T>(T);
+impl<T> GenVal<T> {
+	fn value(&self) -> &T {
+		&self.0
+	}
+}
+```
+</details>
+
+<details>
 ```rust
 struct GenVal<T>(T);
 impl<T> GenVal<T> {
