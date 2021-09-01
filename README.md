@@ -8,12 +8,11 @@ Code from Rust by Example. Readme summary from the Rust Book.
 * ownership is introduced for managing heap data (freeing memory, but only freeing once)
 * ownership extended for all types
   * stack data: just copying (types already implement `Copy`)
-  * stack + heap data: static checks of ownership moves
-  * stack + head data that implements `Copy`: just copying (`Drop` forbidden)
+  * stack (refs to heap) + heap data: static checks of ownership moves
 * Details
-  * Mutability can be changed when taking ownership (really, why not)
+  * Mutability can be changed when taking ownership (why not)
   * Copy means fast copying
-  * `Copy` derived by compiler if all components are `Copy`
+  * `Copy` derived (and allowed) by compiler if and only if all components are `Copy`
   * Moving out of `&` or `&mut` (in pattern matching) requires `Copy`
 
 
@@ -44,8 +43,13 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 
 ## Errors
 * ? Operator and function type
-* Implement `Try` (`Result`, `Option` etc)
-* `Error`: from method
+  * Implement `Try` (`Result`, `Option` etc)
+  * Try::from_error
+* Type mismatch
+  * Container type mismatch: convert (e.g., `Result` to `Option`)
+  * Error type mismatch
+	* Map everything to a single error (`map_err`)
+	* Wrap with Box or custom wrapper (implement `From`)
 
 
 
@@ -62,6 +66,8 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
   * `T: Trait` vs `T: dyn Trait` (or `T: Trait`)
   * object safety
 * `impl` for traits redefines T and 'a
+https://stackoverflow.com/questions/57754901/what-is-a-fat-pointer
+https://stackoverflow.com/questions/67767207/why-are-trait-methods-with-generic-type-parameters-object-unsafe
 
 
 
