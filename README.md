@@ -204,7 +204,7 @@ impl<T> GenVal<T> {
 </details>
 
 <details>
-
+<p/>
 ```rust
 struct GenVal<T>(T);
 impl<T> GenVal<T> {
