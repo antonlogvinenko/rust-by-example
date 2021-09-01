@@ -19,11 +19,21 @@ Code from Rust by Example. Readme summary from the Rust Book.
 
 #### Borrowing
 modes & intersection, chain of mut, rebinding, scope vs lifetime
+* These are the same:
+  * let ref x = y;
+	* In patter matching, `ref` will create a reference
+  * let x = &y;
+	* In pattern matching, `&` will move the value out of reference (requires `Copy`)
+* Same is true for:
+  * let ref mut x = y;
+	* In patter matching, `ref mut` will create a mutable reference
+  * let x = &mut y;
+	* In pattern matching, `mut&` will move the value out of mutable reference (requires `Copy`)
 
 #### Constants
 * `const` keyword and `mut` not allowed
 * type annotation required
-* can be declared in any scope
+* can be declared in any scope, including the global scope
 * can only be set to a constant expression
 <details>
 <summary>Example</summary>
