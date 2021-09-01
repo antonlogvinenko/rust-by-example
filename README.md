@@ -27,6 +27,7 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 * can only be set to a constant expression
 <details>
 <summary>Example</summary>
+
 ```rust
 const MAX_POINTS: u32 = 100_000;
 ```
