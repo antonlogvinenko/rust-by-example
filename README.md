@@ -12,7 +12,7 @@ Code from Rust by Example. Readme summary from the Rust Book.
 * Mechanics
   * Single owner of any value with possible moving
   * When the owner goes out of scope, the value is dropped
-	* Thrown away with stack
+	* Thrown away with stack at some point
 	* Or `drop()` method is called
 * Avoiding bugs
   * There's an owner with drop when it's out of scope => no memory leaks
