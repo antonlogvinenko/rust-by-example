@@ -7,9 +7,15 @@ Code from Rust by Example. Readme summary from the Rust Book.
 * tradeoffs: stack is fast but restricted, heap is slower but more versatile
 * ownership is introduced for managing heap data (freeing memory, but only freeing once)
 * ownership extended for all types
-  * stack data: just copying (types already implement `Copy`)
-  * stack (refs to heap) + heap data: static checks of ownership moves
-* Details
+  * stack data: just copying (types that implement `Copy`)
+  * stack (refs to heap) + heap data: static checks of ownership moves (types that implement `Drop`)
+* Mechanics
+  * Single owner of any value with possible moving
+  * When the owner goes out of scope, the value is dropped
+* Avoiding bugs
+  * There's an owner with drop when it's out of scope => no memory leaks
+  * Single owner => no double free errors
+* Notes and observations:
   * Mutability can be changed when taking ownership (why not)
   * Copy means fast copying
   * `Copy` derived (and allowed) by compiler if and only if all components are `Copy`
