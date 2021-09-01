@@ -25,6 +25,13 @@ modes & intersection, chain of mut, rebinding, scope vs lifetime
 * type annotation required
 * can be declared in any scope
 * can only be set to a constant expression
+<details>
+<summary>Constant declaration</summary>
+
+```rust
+const MAX_POINTS: u32 = 100_000;
+```
+</details>
 
 
 ## Modules
@@ -193,18 +200,6 @@ All of them introduce generic type parameters with restrictions (where or in-pla
 <details>
 <summary>code sample</summary>
 
-```rust
-struct GenVal<T>(T);
-impl<T> GenVal<T> {
-	fn value(&self) -> &T {
-		&self.0
-	}
-}
-```
-</details>
-
-<details>
-<p/>
 ```rust
 struct GenVal<T>(T);
 impl<T> GenVal<T> {
