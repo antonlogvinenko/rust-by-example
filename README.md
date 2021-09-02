@@ -87,7 +87,13 @@ const MAX_POINTS: u32 = 100_000;
 		* Everything is private by default
 		* `pub` to make public
 		* `pub(X)` may add additional restrictions
-  * Referring to visible objects with `use` keyword
+  * Referring to visible objects
+	* With `::` and path
+	* Brining in scope with `use` keyword
+		* module or its component
+			* renaming with `as`
+		* listing several modules/items with `::name{self, name1, name2, ...}`
+		* glob operator `*`
 * Separate module files
   * Use `mod` to include files
   * `foo` is `foo.rs` or `foo/mod.rs`
