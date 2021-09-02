@@ -28,8 +28,16 @@ Code from Rust by Example. Readme summary from the Rust Book.
 #### Borrowing
 * Modes
   * `&` is immutable ref, `&mut` is mutable ref (only allowed if variable is `mut`)
-	* `let x = &y` is the same as `let ref x = y`
-	* `let x = &mut` is the same as `let ref mut x = y`
+	* `&` and `let ref` for immutable refs:
+		* In assignement `let x = &y` is the same as `let ref x = y`
+		* In pattern matching
+			* `ref` will create a reference
+			* `&` will move the value out of reference (requires `Copy`)
+	* `&mut` and `let ref mut` for mutable refs:
+		* In assignement `let x = &mut y` is the same as `let ref mut x = y`
+		* In pattern matching
+			* `ref mut` will create a reference
+			* `&mut` will move the value out of mutable reference (requires `Copy`)
   * Modes:
 	* No references: owner can read and write
 	* Only one `&mut` reference; owner can't read and write and borrow
@@ -41,17 +49,7 @@ Code from Rust by Example. Readme summary from the Rust Book.
 	* Whole tuple can't be read and written through the owner
 	
 chain of mut, rebinding, scope vs lifetime
-
-* These are the same:
-  * let ref x = y;
-	* In patter matching, `ref` will create a reference
-  * let x = &y;
-	* In pattern matching, `&` will move the value out of reference (requires `Copy`)
-* Same is true for:
-  * let ref mut x = y;
-	* In patter matching, `ref mut` will create a mutable reference
-  * let x = &mut y;
-	* In pattern matching, `mut&` will move the value out of mutable reference (requires `Copy`)
+	
 
 #### Constants
 * `const` keyword and `mut` not allowed
