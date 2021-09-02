@@ -26,7 +26,22 @@ Code from Rust by Example. Readme summary from the Rust Book.
 
 
 #### Borrowing
-modes & intersection, chain of mut, rebinding, scope vs lifetime
+* Modes
+  * `&` is immutable ref, `&mut` is mutable ref (only allowed if variable is `mut`)
+	* `let x = &y` is the same as `let ref x = y`
+	* `let x = &mut` is the same as `let ref mut x = y`
+  * Modes:
+	* No references: owner can read and write
+	* Only one `&mut` reference; owner can't read and write and borrow
+	* Many `&` references; owner can only read, but not write and borrow
+  * Intersection: applied to intersecting parts of data
+	* In `(a, b)` `a` can be mutable borrowed while `b` is immutably borrowed
+	* `a` can't be read and written through the owner
+	* `b` can't be written but can be read through the owner
+	* Whole tuple can't be read and written through the owner
+	
+chain of mut, rebinding, scope vs lifetime
+
 * These are the same:
   * let ref x = y;
 	* In patter matching, `ref` will create a reference
