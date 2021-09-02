@@ -73,12 +73,25 @@ const MAX_POINTS: u32 = 100_000;
 
 ## Modules
 * Package -> crate -> module
-* Binary/lib crates
-* Path, visibility (!! pub or sibling), `use`
-* !!! Visibility rules
-  * See everything in ancestors
-  * See on pub path in descendants (`pub(X)` may add additional restrictions)
-* !!! Separate module files
+* Package: Cargo.toml + several crates
+* Crate: binary/lib with crate root (root module)
+  * `src/lib.rs` is the single library crate named after package
+  * `src/main.rs` is the default binary crate named after package
+  * multiple binary crates can be stored at `src/bin`
+* Modules
+  * Start at `crate` root
+  * Are defined with `mod`
+  * Paths inside module tree:
+	* Absolute (start with `crate`)
+   * Relative (start with `self` or `super`)
+  * Visibility rules
+	* Module sees everything in ancestors
+	* Modules sees on pub path in descendants
+		* Everything is private by default
+		* `pub` to make public
+		* `pub(X)` may add additional restrictions
+  * Referring to visible objects with `use` keyword
+* Separate module files
   * Use `mod` to include files
   * `foo` is `foo.rs` or `foo/mod.rs`
   * `foo/bar` is `foo/bar.rs`
