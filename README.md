@@ -49,8 +49,13 @@ Code from Rust by Example. Readme summary from the Rust Book.
 	* `b` can't be written but can be read through the owner
 	* Whole tuple can't be read and written through the owner
 	
-dereferencing, chain of mut, rebinding, scope vs lifetime
-	
+? dereferencing
+? automatic dereferencing https://doc.rust-lang.org/book/ch05-03-method-syntax.html
+? scope vs lifetime
+? chain of mut
+? rebinding
+? associated functions
+
 
 #### Constants
 * `const` keyword and `mut` not allowed
