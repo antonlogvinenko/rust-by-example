@@ -19,7 +19,7 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * Single owner => no double free errors
 * Notes and observations:
   * Mutability can be changed when taking ownership (why not)
-  * Copy means fast copying
+  * `Copy` means fast copying
   * `Copy` derived (and allowed) by compiler if and only if all components are `Copy`
   * `Copy` and `Drop` types can't be both implemented for the same type
   * Moving out of `&` or `&mut` (in pattern matching) requires `Copy`
