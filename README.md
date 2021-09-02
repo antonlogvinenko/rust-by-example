@@ -26,18 +26,17 @@ Code from Rust by Example. Readme summary from the Rust Book.
 
 
 #### Borrowing
-* Modes
-  * `&` is immutable ref, `&mut` is mutable ref (only allowed if variable is `mut`)
-	* `&` and `let ref` for immutable refs:
-		* In assignement `let x = &y` is the same as `let ref x = y`
-		* In pattern matching
-			* `ref` will create a reference
-			* `&` will move the value out of reference (requires `Copy`)
-	* `&mut` and `let ref mut` for mutable refs:
-		* In assignement `let x = &mut y` is the same as `let ref mut x = y`
-		* In pattern matching
-			* `ref mut` will create a reference
-			* `&mut` will move the value out of mutable reference (requires `Copy`)
+  * References
+	* Creating references
+		* Immutable
+			* `let x = &y`
+			* `let ref x = y`
+		* Mutable
+			* `let x = &mut y`
+			* `let ref mut x = y`
+	* Pattern matching
+		* `&` and `&mut` move the value out of the reference (require `Copy`)
+		* `ref` and `ref mut` create a reference to the value
   * Modes:
 	* No references: owner can read and write
 	* Only one `&mut` reference; owner can't read and write and borrow
