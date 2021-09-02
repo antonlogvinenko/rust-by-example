@@ -90,8 +90,7 @@ const MAX_POINTS: u32 = 100_000;
   * Referring to visible objects
 	* With `::` and path
 	* Brining in scope with `use` keyword
-		* module or its component
-			* renaming with `as`
+		* module or its component (can be renamed with `as`)
 		* listing several modules/items with `::name{self, name1, name2, ...}`
 		* glob operator `*`
 * Separate module files
