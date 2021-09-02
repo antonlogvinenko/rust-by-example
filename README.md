@@ -27,8 +27,8 @@ Code from Rust by Example. Readme summary from the Rust Book.
 
 #### Borrowing
 * Prevents
-  * Data races
-  * Dangling pointers
+  * Data races: can't compile code with both read and write access from difference references
+  * Dangling pointers: data guaranteed to exist while reference exist
 * References
   * Creating references
 	* Immutable: `let x = &y` or `let ref x = y`
@@ -43,6 +43,7 @@ Code from Rust by Example. Readme summary from the Rust Book.
 * Intersection
   * Rules are applied to parts of data
   * Restrictions sum up for the whole structure
+  * Example:
 	* In `(a, b)` `a` can be mutable borrowed while `b` is immutably borrowed
 	* `a` can't be read and written through the owner
 	* `b` can't be written but can be read through the owner
