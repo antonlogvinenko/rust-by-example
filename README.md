@@ -41,12 +41,14 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * No references: owner can read and write
   * Only one `&mut` reference; owner can't read and write and borrow
   * Many `&` references; owner can only read, but not write and borrow
-* Intersection: applied to intersecting parts of data
-  * In `(a, b)` `a` can be mutable borrowed while `b` is immutably borrowed
-  * `a` can't be read and written through the owner
-  * `b` can't be written but can be read through the owner
-  * Whole tuple can't be read and written through the owner
-		
+* Intersection
+  * Rueles are applied to parts of data
+  * Restrictions sum up for the whole structure
+	* In `(a, b)` `a` can be mutable borrowed while `b` is immutably borrowed
+	* `a` can't be read and written through the owner
+	* `b` can't be written but can be read through the owner
+	* Whole tuple can't be read and written through the owner
+	
 chain of mut, rebinding, scope vs lifetime
 	
 
