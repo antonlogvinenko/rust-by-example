@@ -26,27 +26,27 @@ Code from Rust by Example. Readme summary from the Rust Book.
 
 
 #### Borrowing
-  * References
-	* Creating references
-		* Immutable
-			* `let x = &y`
-			* `let ref x = y`
-		* Mutable
-			* `let x = &mut y`
-			* `let ref mut x = y`
-	* Pattern matching
-		* `&` and `&mut` move the value out of the reference (require `Copy`)
-		* `ref` and `ref mut` create a reference to the value
-  * Modes:
-	* No references: owner can read and write
-	* Only one `&mut` reference; owner can't read and write and borrow
-	* Many `&` references; owner can only read, but not write and borrow
-  * Intersection: applied to intersecting parts of data
-	* In `(a, b)` `a` can be mutable borrowed while `b` is immutably borrowed
-	* `a` can't be read and written through the owner
-	* `b` can't be written but can be read through the owner
-	* Whole tuple can't be read and written through the owner
-	
+* References
+  * Creating references
+	* Immutable
+		* `let x = &y`
+		* `let ref x = y`
+	* Mutable
+		* `let x = &mut y`
+		* `let ref mut x = y`
+  * Pattern matching
+	* `&` and `&mut` move the value out of the reference (require `Copy`)
+	* `ref` and `ref mut` create a reference to the value
+* Modes:
+  * No references: owner can read and write
+  * Only one `&mut` reference; owner can't read and write and borrow
+  * Many `&` references; owner can only read, but not write and borrow
+* Intersection: applied to intersecting parts of data
+  * In `(a, b)` `a` can be mutable borrowed while `b` is immutably borrowed
+  * `a` can't be read and written through the owner
+  * `b` can't be written but can be read through the owner
+  * Whole tuple can't be read and written through the owner
+		
 chain of mut, rebinding, scope vs lifetime
 	
 
