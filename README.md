@@ -80,7 +80,7 @@ const MAX_POINTS: u32 = 100_000;
   * Are defined with `mod`
   * Paths inside module tree:
 	* Absolute (start with `crate`)
-   * Relative (start with `self` or `super`)
+    * Relative (start with `self` or `super`)
   * Visibility rules
 	* Module sees everything in ancestors
 	* Modules sees on pub path in descendants
