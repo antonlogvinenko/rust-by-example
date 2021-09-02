@@ -1,6 +1,3 @@
-# Rust book and Rust by Example book summary
-Code from Rust by Example. Readme summary from the Rust Book.
-
 ## Ownership & borrowing
 #### Ownership & Copy vs Move
 * known size => stack, unknown stack => heap
