@@ -46,12 +46,12 @@
 	* `b` can't be written but can be read through the owner
 	* Whole tuple can't be read and written through the owner
 	
-? dereferencing
-? automatic dereferencing https://doc.rust-lang.org/book/ch05-03-method-syntax.html
-? scope vs lifetime
-? chain of mut
-? rebinding
-? associated functions
+* ??? dereferencing
+* ??? automatic dereferencing https://doc.rust-lang.org/book/ch05-03-method-syntax.html
+* ??? scope vs lifetime
+* ??? chain of mut
+* ??? rebinding
+* ??? associated functions
 
 
 #### Constants
@@ -94,13 +94,12 @@ const MAX_POINTS: u32 = 100_000;
 		* listing several modules/items with `::name{self, name1, name2, ...}`
 		* glob operator `*`
 * Separate module files
-  * Use `mod` to include files
-  * `foo` is `foo.rs` or `foo/mod.rs`
-  * `foo/bar` is `foo/bar.rs`
-  * ???? `foo/bar/mod.rs` is `foo/bar`
-* !!! `pub use` to use with public visibility (reorganise structure for API)
-* Release profiles
-* Workspaces (cross deps, external deps versions)
+  * Use `mod` to include files to build mod tree
+  * `mod foo` is `foo.rs` or `foo/mod.rs`
+
+* ??? `pub use` to use with public visibility (reorganise structure for API)
+* ??? Release profiles
+* ??? Workspaces (cross deps, external deps versions)
 
 
 
