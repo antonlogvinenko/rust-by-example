@@ -28,12 +28,8 @@ Code from Rust by Example. Readme summary from the Rust Book.
 #### Borrowing
 * References
   * Creating references
-	* Immutable
-		* `let x = &y`
-		* `let ref x = y`
-	* Mutable
-		* `let x = &mut y`
-		* `let ref mut x = y`
+	* Immutable: `let x = &y` or `let ref x = y`
+	* Mutable: `let x = &mut y` or `let ref mut x = y`
   * Pattern matching
 	* `&` and `&mut` move the value out of the reference (require `Copy`)
 	* `ref` and `ref mut` create a reference to the value
