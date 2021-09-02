@@ -14,9 +14,9 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * When the owner goes out of scope, the value is dropped
 	* Thrown away with stack at some point
 	* Or `drop()` method is called
-* Avoiding bugs
-  * There's an owner with drop when it's out of scope => no memory leaks
-  * Single owner => no double free errors
+* Prevents
+  * Memory leaks (not all): There's an owner with drop when it's out of scope
+  * Double free errors: single owner
 * Notes and observations:
   * Mutability can be changed when taking ownership (why not)
   * `Copy` means fast copying
@@ -26,6 +26,9 @@ Code from Rust by Example. Readme summary from the Rust Book.
 
 
 #### Borrowing
+* Prevents
+  * Data races
+  * Dangling pointers
 * References
   * Creating references
 	* Immutable: `let x = &y` or `let ref x = y`
@@ -38,14 +41,14 @@ Code from Rust by Example. Readme summary from the Rust Book.
   * Only one `&mut` reference; owner can't read and write and borrow
   * Many `&` references; owner can only read, but not write and borrow
 * Intersection
-  * Rueles are applied to parts of data
+  * Rules are applied to parts of data
   * Restrictions sum up for the whole structure
 	* In `(a, b)` `a` can be mutable borrowed while `b` is immutably borrowed
 	* `a` can't be read and written through the owner
 	* `b` can't be written but can be read through the owner
 	* Whole tuple can't be read and written through the owner
 	
-chain of mut, rebinding, scope vs lifetime
+dereferencing, chain of mut, rebinding, scope vs lifetime
 	
 
 #### Constants
