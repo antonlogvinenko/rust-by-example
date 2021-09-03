@@ -104,15 +104,16 @@ const MAX_POINTS: u32 = 100_000;
 ## Strings
 No support for indexing
 
+
 ## Errors
-`?` Operator and function type
-	* Implement `Try` (`Result`, `Option` etc)
-	* Try::from_error
-Type mismatch
-	* Container type mismatch: convert (e.g., `Result` to `Option`)
-	* Error type mismatch
-		* Map everything to a single error (`map_err`)
-		* Wrap with Box or custom wrapper (implement `From`)
+* `?` Operator and function type
+  * Implement `Try` (`Result`, `Option` etc)
+  * Try::from_error
+* Type mismatch
+  * Container type mismatch: convert (e.g., `Result` to `Option`)
+  * Error type mismatch
+	* Map everything to a single error (`map_err`)
+	* Wrap with Box or custom wrapper (implement `From`)
 
 
 
