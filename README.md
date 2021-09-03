@@ -22,6 +22,7 @@
   * Moving out of `&` or `&mut` (in pattern matching) requires `Copy`
 
 
+
 #### Borrowing
 * Prevents
   * Data races: can't compile code with both read and write access from difference references
@@ -54,18 +55,13 @@
 * ??? associated functions
 
 
-#### Constants
+
+## Constants
 * `const` keyword and `mut` not allowed
 * type annotation required
 * can be declared in any scope, including the global scope
 * can only be set to a constant expression
-<details>
-<summary>Example</summary>
 
-```rust
-const MAX_POINTS: u32 = 100_000;
-```
-</details>
 
 
 ## Modules
