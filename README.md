@@ -89,11 +89,11 @@
 		* module or its component (can be renamed with `as`)
 		* listing several modules/items with `::name{self, name1, name2, ...}`
 		* glob operator `*`
+		* make new symbol public by using `pub use`
 * Separate module files
   * Use `mod` to include files to build mod tree
   * `mod foo` is `foo.rs` or `foo/mod.rs`
 
-* ??? `pub use` to use with public visibility (reorganise structure for API)
 * ??? Release profiles
 * ??? Workspaces (cross deps, external deps versions)
 
