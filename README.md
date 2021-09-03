@@ -104,7 +104,7 @@ const MAX_POINTS: u32 = 100_000;
 ## Strings
 * Implementation, several levels, `नमस्ते` as example
   * bytes level: `[224, 164, 168, 224, 164, 174, 224, 164, 184, 224, 165, 141, 224, 164, 164, 224, 165, 135]`
-  * UTF-8 scalar level (Rust's `char` type): `['न', 'म', 'स', '्', 'त', 'े']` - 4th and 6th are diacritics not letters
+  * UTF-8 scalar level (Rust's `char` type): `['न', 'म', 'स', '्', 'त', 'े']` (4th and 6th are diacritics not letters)
   * grapheme clusters: `["न", "म", "स्", "ते"]`
 * No support for indexing
   * Returning bytes is not something that is expected from indexing
