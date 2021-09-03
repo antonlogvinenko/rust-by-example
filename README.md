@@ -109,6 +109,9 @@ const MAX_POINTS: u32 = 100_000;
 * No support for indexing
   * Returning bytes is not something that is expected from indexing
   * Returning actual letters is not always possible in `O(1)`
+* Support for slices
+  * Range is specified in bytes
+  * Slicing allowed only at `char` (UTF-8 scalars) boundaries, otherwise code panics
 
 
 ## Errors
