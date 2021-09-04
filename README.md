@@ -97,6 +97,7 @@
 * ??? Release profiles
 * ??? Workspaces (cross deps, external deps versions)
 
+
 ## Strings
 * Implementation, several levels, `नमस्ते` as example
   * bytes level: `[224, 164, 168, 224, 164, 174, 224, 164, 184, 224, 165, 141, 224, 164, 164, 224, 165, 135]`
@@ -111,9 +112,18 @@
 
 
 ## Errors
+* Types of errors
+  * Unrecoverable (use `panic!` macro)
+  * Recoverable (use proper return types like `Result<T, E>`)
+* `panic!`
+  * unwindle (default) or abort policies (set in release profile)
+  * `RUST_BACKTRACE` to see stacktrace if debug symbols are enabled
+* Going from recoverable to unrecoverable
+  * `.unwrap()`
+  * `.expect("message")`
 * `?` Operator and function type
   * Implement `Try` (`Result`, `Option` etc)
-  * Try::from_error
+  * `unwrap` or `return Err(From::from(error))`
 * Type mismatch
   * Container type mismatch: convert (e.g., `Result` to `Option`)
   * Error type mismatch
