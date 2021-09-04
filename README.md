@@ -135,8 +135,20 @@
 ## Generics, traits, lifetimes
 * Generics
   * functions, structs, enums, methods
+  * Bounds (type restrictions):
+	* Common
+		* In declaration `<T: Trait1 + Trait2 + 'lifetime>`
+		* In where clause `T: Trait1 + Trait2 + 'lifetime`
+		* In fn args and return type: `impl T1 + T2`
+	* Unique
+		* For `impl` block: specific types instead of generics
+		* For `enum`, `struct`, `trait`, `type` definitions: defaults for type parameters
+* Performance: monomorphization
+  * e.g. find all specific uses of `Option<T>` and generate definitions and functions for each one
+
 * Traits
- * define, implement, default methods
+ * define and implement for types
+ * default methods
  * as param/return values (`impl` and bound syntax, also `+`, also `where`) !!!
  * !!! Conditional method implementation: fixed type, trait bound
 * Lifetimes
@@ -145,6 +157,11 @@
   * `T: Trait` vs `T: dyn Trait` (or `T: Trait`)
   * object safety
 * `impl` for traits redefines T and 'a
+
+* ??? associated type
+* ??? associated function
+* ??? default type
+* ??? default method
 
 * https://stackoverflow.com/questions/57754901/what-is-a-fat-pointer
 * https://stackoverflow.com/questions/67767207/why-are-trait-methods-with-generic-type-parameters-object-unsafe
