@@ -174,7 +174,7 @@
 * Lfietime elision rules
   * For method and functions
   * If arguments include only one reference or there's a `self` reference, then all output references get this lifetime
-* `'static` lifetime
+* `'static` lifetime: lives for the entire duration of the program
 * `impl` for traits redefines T and 'a
 
 
