@@ -179,6 +179,20 @@
 
 
 
+## Tests
+* Unit tests
+  * `test` namespace: `#[cfg(test)]`, `#[test]`
+  * idiom to access code under test: `use super::*;`
+* Testing utils
+  * `assert!`, `assert_eq!`, `assert_ne!`
+  * adding a message with `assert!(expr, message, args)`
+  * expect a panic `#[should_panic]` or `#[should_panic(expected = "message"]`
+  * Using `Resault<T, E>` to signal test pass or failure
+* Controlling how tests are run
+* Test orgranization
+  * documentation & benchmark tests
+
+
 ## Iterators
 * Iterator adapters (modify iterator) and consuming adaptors (move iterator in)
 * `iter`, `iter_mut`, `into_iter` for marking ownership mode for original values
