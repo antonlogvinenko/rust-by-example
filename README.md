@@ -220,7 +220,11 @@
 	* Can only use `Fn` where `Fn` is expected (`&self` will be enough only for `Fn`)
 	* Can use both `Fn` and `FnMut` where `FnMut` is expected (`&mut self` will be enough for `Fn` and `FnMut`)
 	* Can use any of `Fn`, `FnMut`, and `FnOnce` where `FnOnce` is expected (owned `self` will be enought for all three)
-
+* Force variable capture by `move`
+  * Ownership of variable will be moved to the closure
+  * Closure type will still be deretermined by captured variables usage, not `move` keyword (can be any of `Fn`, `FnMut`, `FnOnce`)
+  * Useful for moving ownership to another thread
+  
 ## Iterators
 * Iterator adapters (modify iterator) and consuming adaptors (move iterator in)
 * `iter`, `iter_mut`, `into_iter` for marking ownership mode for original values
