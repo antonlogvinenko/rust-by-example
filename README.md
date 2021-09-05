@@ -209,6 +209,18 @@
 
 
 
+## Closures
+* What they are
+  * A table stored in `self` referring/owning variables from the context
+  * An interface
+	* Only `&` refs in `self` table - Fn with `apply(&self)`
+	* Has `&mut` refs in `self` table - FnMut with `apply(&mut self)`
+	* Has ownership in `self` table - FnOnce with `apply(self)`
+  * Subtyping: `Fn` < `FnMut` < `FnOnce`bBased on expected an actual access to `self`
+	* Can only use `Fn` where `Fn` is expected (`&self` will be enough only for `Fn`)
+	* Can use both `Fn` and `FnMut` where `FnMut` is expected (`&mut self` will be enough for `Fn` and `FnMut`)
+	* Can use any of `Fn`, `FnMut`, and `FnOnce` where `FnOnce` is expected (owned `self` will be enought for all three)
+
 ## Iterators
 * Iterator adapters (modify iterator) and consuming adaptors (move iterator in)
 * `iter`, `iter_mut`, `into_iter` for marking ownership mode for original values
