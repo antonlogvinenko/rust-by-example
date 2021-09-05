@@ -153,9 +153,9 @@
 
 ## Traits
 * Traits
- * define and implement for types
- * default methods
- * associated types
+  * define and implement for types
+  * default methods
+  * associated types
 * Trait objects
   * `T: Trait` vs `T: dyn Trait` (or `T: Trait`)
   * object safety
