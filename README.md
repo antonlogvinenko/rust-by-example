@@ -155,8 +155,8 @@
 * Traits
   * define and implement for types
   * default methods
-  * associated types
-* Trait objects
+  * ??? associated types
+* ??? Trait objects
   * `T: Trait` vs `T: dyn Trait` (or `T: Trait`)
   * object safety
 * https://stackoverflow.com/questions/57754901/what-is-a-fat-pointer
@@ -165,7 +165,16 @@
 
 
 ## Lifetimes
-* why, !!! functions, !!! structs, !!! methods, !!! lifetime elision, static lifetime
+* Prevent
+  * dangling pointers (together with references = borrow checker)
+* Implementation for
+  * functions
+  * methods
+  * structs
+* Lfietime elision rules
+  * For method and functions
+  * If arguments include only one reference or there's a `self` reference, then all output references get this lifetime
+* `'static` lifetime
 * `impl` for traits redefines T and 'a
 
 
