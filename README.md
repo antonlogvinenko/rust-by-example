@@ -187,8 +187,15 @@
   * `assert!`, `assert_eq!`, `assert_ne!`
   * adding a message with `assert!(expr, message, args)`
   * expect a panic `#[should_panic]` or `#[should_panic(expected = "message"]`
-  * Using `Resault<T, E>` to signal test pass or failure
+  * Using `Result<T, E>` to signal test pass or failure
 * Controlling how tests are run
+  * `--` to pass args to test binary & `cargo test -- --help` to see them
+  * Parallelism: `cargo test -- --test-threads=1`
+  * Showing output: `--show-output`
+  * Running a subset of tests by name or part of the name: `cargo test name`
+  * Ignore tests until requested
+	* Ignore `#[test]`
+	* Request `cargo test -- --ignored`
 * Test orgranization
   * documentation & benchmark tests
 
