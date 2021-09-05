@@ -180,9 +180,6 @@
 
 
 ## Tests
-* Unit tests
-  * `test` namespace: `#[cfg(test)]`, `#[test]`
-  * idiom to access code under test: `use super::*;`
 * Testing utils
   * `assert!`, `assert_eq!`, `assert_ne!`
   * adding a message with `assert!(expr, message, args)`
@@ -197,6 +194,16 @@
 	* Ignore `#[test]`
 	* Request `cargo test -- --ignored`
 * Test orgranization
+  * Unit tests
+	* Located inside modules
+	* `test` namespace: `#[cfg(test)]`, `#[test]`
+	* idiom to access code under test: `use super::*;`
+  * Integration tests
+	* Only for library crate
+	* Located in `tests` dir next to `src`
+	* Each test file in `tests` is a separate `crate`
+	* Run specific integration test with `cargo test --test name`
+		* Use `foo/mod.rs` convention for `foo` module inside `tests` dir to avoid running it as integration test
   * documentation & benchmark tests
 
 
