@@ -195,6 +195,7 @@
 	* Request `cargo test -- --ignored`
 * Test orgranization
   * Unit tests
+	* For both library and binary crates
 	* Located inside modules
 	* `test` namespace: `#[cfg(test)]`, `#[test]`
 	* idiom to access code under test: `use super::*;`
@@ -205,6 +206,7 @@
 	* Run specific integration test with `cargo test --test name`
 		* Use `foo/mod.rs` convention for `foo` module inside `tests` dir to avoid running it as integration test
   * documentation & benchmark tests
+
 
 
 ## Iterators
