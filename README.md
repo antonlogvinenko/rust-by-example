@@ -98,6 +98,7 @@
 * ??? Workspaces (cross deps, external deps versions)
 
 
+
 ## Strings
 * Implementation, several levels, `नमस्ते` as example
   * bytes level: `[224, 164, 168, 224, 164, 174, 224, 164, 184, 224, 165, 141, 224, 164, 164, 224, 165, 135]`
@@ -109,6 +110,7 @@
 * Support for slices
   * Range is specified in bytes
   * Slicing allowed only at `char` (UTF-8 scalars) boundaries, otherwise code panics
+
 
 
 ## Errors
@@ -224,9 +226,13 @@
   * Ownership of variable will be moved to the closure
   * Closure type will still be deretermined by captured variables usage, not `move` keyword (can be any of `Fn`, `FnMut`, `FnOnce`)
   * Useful for moving ownership to another thread
-  
+
+
+
 ## Iterators
-* Iterator adapters (modify iterator) and consuming adaptors (move iterator in)
+* Adaptors
+  * Consuming adaptors (take ownership of the iterator and call the `next` method consuming the iterator)
+  * Iterator adaptors (modify iterator) to produce another iterator
 * `iter`, `iter_mut`, `into_iter` for marking ownership mode for original values
 
 
