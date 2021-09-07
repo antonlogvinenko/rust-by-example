@@ -1,4 +1,4 @@
-### Ownership & Copy vs Move
+## Ownership & Copy vs Move
 * known size => stack, unknown stack => heap
 * tradeoffs: stack is fast but restricted, heap is slower but more versatile
 * ownership is introduced for managing heap data (freeing memory, but only freeing once)
@@ -22,8 +22,8 @@
 
 
 
-#### Borrowing
-* Prevents
+## Borrowing
+### Prevents
   * Data races: can't compile code with both read and write access from difference references
   * Dangling pointers: data guaranteed to exist while reference exist
 * References
