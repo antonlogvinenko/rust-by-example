@@ -1,5 +1,4 @@
-## Ownership & borrowing
-#### Ownership & Copy vs Move
+### Ownership & Copy vs Move
 * known size => stack, unknown stack => heap
 * tradeoffs: stack is fast but restricted, heap is slower but more versatile
 * ownership is introduced for managing heap data (freeing memory, but only freeing once)
@@ -89,13 +88,20 @@
 		* module or its component (can be renamed with `as`)
 		* listing several modules/items with `::name{self, name1, name2, ...}`
 		* glob operator `*`
-		* make new symbol public by using `pub use`
+		* `pub use`
+			* make new symbol public by using 
+			* reorganize library API
 * Separate module files
   * Use `mod` to include files to build mod tree
   * `mod foo` is `foo.rs` or `foo/mod.rs`
-
-* ??? Release profiles
-* ??? Workspaces (cross deps, external deps versions)
+* Workspaces (cross deps, external deps versions)
+  * Several packages that depend on each other
+	* `Cargo.toml` with `[workspace]` section specifying `members = ["package1", ...]`
+	* `[dependencies]` with `package = { path = "../package" }` inside
+  * External depepdencies declared in the workspace not packages
+	* In Cargo.toml in `workspace`: `[dependencies]` with `package = "version"` 
+	* In Cargo.toml in packages: just use the dependency
+	* Same `Cargo.lock` and `output` directory
 
 
 
@@ -177,7 +183,7 @@
   * For method and functions
   * If arguments include only one reference or there's a `self` reference, then all output references get this lifetime
 * `'static` lifetime: lives for the entire duration of the program
-* `impl` for traits redefines T and 'a
+* ??? `impl` for traits redefines T and 'a
 
 
 
