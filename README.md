@@ -244,23 +244,23 @@
 
 
 ## Smart pointers
-#### Box
-* unknown size (unknown type or recursive type)
-* unspecified type inside (that only implements specific traits)
-* transfer data while insured that data will be moved not copied
-#### Deref
-* deref returns a reference
-* *x -> *(x.deref())
-* autodereference with * for methods, i.e. rewrites: x => *x => *(x.deref())
-#### Drop
-* logic
-* `mom::std::drop`
-#### RC, reference counting, multiple ownership, i.e. ownership+Box
-* `clone()` to increase counter
-* `Drop` trait to decrease counter (and cleanup owned resource when 0)
-* `Weak`: `downgrade`/`upgrade`, `weak_count`/`strong_count`
-#### RefCell, interior mutability, i.e. &+&mut+Box+runtimechecks
-* borrow + Ref, borrow_mut + RefMut
+* Box
+  * unknown size (unknown type or recursive type)
+  * unspecified type inside (that only implements specific traits)
+  * transfer data while insured that data will be moved not copied
+* Deref
+  * deref returns a reference
+  * *x -> *(x.deref())
+  * autodereference with * for methods, i.e. rewrites: x => *x => *(x.deref())
+* Drop
+  * logic
+  * `mom::std::drop`
+* RC, reference counting, multiple ownership, i.e. ownership+Box
+  * `clone()` to increase counter
+  * `Drop` trait to decrease counter (and cleanup owned resource when 0)
+  * `Weak`: `downgrade`/`upgrade`, `weak_count`/`strong_count`
+* RefCell, interior mutability, i.e. &+&mut+Box+runtimechecks
+  * borrow + Ref, borrow_mut + RefMut
 
 
 
