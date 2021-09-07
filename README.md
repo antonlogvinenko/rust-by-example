@@ -1,4 +1,5 @@
-## Ownership & Copy vs Move
+## Ownership & borrowing
+#### Ownership & Copy vs Move
 * known size => stack, unknown stack => heap
 * tradeoffs: stack is fast but restricted, heap is slower but more versatile
 * ownership is introduced for managing heap data (freeing memory, but only freeing once)
@@ -22,22 +23,22 @@
 
 
 
-## Borrowing
-### Prevents
+#### Borrowing
+* Prevents
   * Data races: can't compile code with both read and write access from difference references
   * Dangling pointers: data guaranteed to exist while reference exist
-### References
+* References
   * Creating references
 	* Immutable: `let x = &y` or `let ref x = y`
 	* Mutable: `let x = &mut y` or `let ref mut x = y`
   * Pattern matching
 	* `&` and `&mut` move the value out of the reference (require `Copy`)
 	* `ref` and `ref mut` create a reference to the value
-### Modes:
+* Modes:
   * No references: owner can read and write
   * Only one `&mut` reference; owner can't read and write and borrow
   * Many `&` references; owner can only read, but not write and borrow
-### Intersection
+* Intersection
   * Rules are applied to parts of data
   * Restrictions sum up for the whole structure
   * Example:
