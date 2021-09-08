@@ -224,7 +224,7 @@
 	* Only `&` refs in `self` table - Fn with `apply(&self)`
 	* Has `&mut` refs in `self` table - FnMut with `apply(&mut self)`
 	* Has ownership in `self` table - FnOnce with `apply(self)`
-  * Subtyping: `Fn` < `FnMut` < `FnOnce`bBased on expected an actual access to `self`
+  * Subtyping: `Fn` < `FnMut` < `FnOnce` based on expected an actual access to `self`
 	* Can only use `Fn` where `Fn` is expected (`&self` will be enough only for `Fn`)
 	* Can use both `Fn` and `FnMut` where `FnMut` is expected (`&mut self` will be enough for `Fn` and `FnMut`)
 	* Can use any of `Fn`, `FnMut`, and `FnOnce` where `FnOnce` is expected (owned `self` will be enought for all three)
@@ -252,14 +252,14 @@
 * A smart pointer implements `Deref` and `Drop`
   * `Deref`
 	* `deref` returns a reference
-	* *x -> *(x.deref())
-	* deref coersion on arguments for functions & methods (i.e. x => *x => *(x.deref()))
+	* `*x` makes compiler decide with kind of `deref` to invoke and then does: *x -> *(x.deref())
 		* From `&T` to `&U` when `T: Deref<Target=U>`
 		* From `&mut T` to `&mut U` when `T: DerefMut<Target=U>`
 		* From `&mut T` to `&U` when `T: Deref<Target=U>`
-  * Drop
+	* deref coersion on arguments for functions & methods (i.e. x => *x => *(x.deref()))
+  * `Drop`
 	* logic
-	* `mom::std::drop`
+	* `mem::std::drop`
 * RC, reference counting, multiple ownership, i.e. ownership+Box
   * `clone()` to increase counter
   * `Drop` trait to decrease counter (and cleanup owned resource when 0)
