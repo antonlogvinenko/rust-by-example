@@ -244,17 +244,22 @@
 
 
 ## Smart pointers
-* Box
-  * unknown size (unknown type or recursive type)
-  * unspecified type inside (that only implements specific traits)
-  * transfer data while insured that data will be moved not copied
-* Deref
-  * deref returns a reference
-  * *x -> *(x.deref())
-  * autodereference with * for methods, i.e. rewrites: x => *x => *(x.deref())
-* Drop
-  * logic
-  * `mom::std::drop`
+* Box for size of data
+  * Size too large: leep it on heap and transfer data by moving not copying
+  * Size unknown
+  	* unspecified type inside (that only implements specific traits)
+	* type whose size can't be known at compile type (recursive type)
+* A smart pointer implements `Deref` and `Drop`
+  * `Deref`
+	* `deref` returns a reference
+	* *x -> *(x.deref())
+	* deref coersion on arguments for functions & methods (i.e. x => *x => *(x.deref()))
+		* From `&T` to `&U` when `T: Deref<Target=U>`
+		* From `&mut T` to `&mut U` when `T: DerefMut<Target=U>`
+		* From `&mut T` to `&U` when `T: Deref<Target=U>`
+  * Drop
+	* logic
+	* `mom::std::drop`
 * RC, reference counting, multiple ownership, i.e. ownership+Box
   * `clone()` to increase counter
   * `Drop` trait to decrease counter (and cleanup owned resource when 0)
