@@ -258,8 +258,8 @@
 		* From `&mut T` to `&U` when `T: Deref<Target=U>`
 	* deref coersion on arguments for functions & methods (i.e. x => *x => *(x.deref()))
   * `Drop`
-	* logic
-	* `mem::std::drop`
+	* called when variables goes out of scope
+	* To clean up a value early: `mem::std::drop`
 * RC, reference counting, multiple ownership, i.e. ownership+Box
   * `clone()` to increase counter
   * `Drop` trait to decrease counter (and cleanup owned resource when 0)
