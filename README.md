@@ -263,7 +263,9 @@
 * RC, reference counting, multiple ownership, i.e. ownership+Box
   * `clone()` to increase counter
   * `Drop` trait to decrease counter (and cleanup owned resource when 0)
-  * `Weak`: `downgrade`/`upgrade`, `weak_count`/`strong_count`
+  * Avoiding memory leaks by switching between `weak_count`/`strong_count`
+	* `downgrade` on `RC<T>` to get `Weak<T>`
+	* `upgrade` on `Weak<T>` to get `Option<RC<T>>`
 * `RefCell`, interior mutability, i.e. &+&mut+Box+runtimechecks
   * Methods
 	* `borrow` returns `Ref<T>`
