@@ -264,9 +264,13 @@
   * `clone()` to increase counter
   * `Drop` trait to decrease counter (and cleanup owned resource when 0)
   * `Weak`: `downgrade`/`upgrade`, `weak_count`/`strong_count`
-* RefCell, interior mutability, i.e. &+&mut+Box+runtimechecks
-  * borrow + Ref, borrow_mut + RefMut
-
+* `RefCell`, interior mutability, i.e. &+&mut+Box+runtimechecks
+  * Methods
+	* `borrow` returns `Ref<T>`
+	* `borrow_mut` returns `RefMut<T>`
+  * Either one mutable or multiple immutable references
+  * Borrowing rules are checked at runtime
+  * `Rc<RefCell<T>>` pattern: multiple owners + interior mutability
 
 
 ## Concurrency
