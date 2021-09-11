@@ -228,7 +228,7 @@
 	* Can only use `Fn` where `Fn` is expected (`&self` will be enough only for `Fn`)
 	* Can use both `Fn` and `FnMut` where `FnMut` is expected (`&mut self` will be enough for `Fn` and `FnMut`)
 	* Can use any of `Fn`, `FnMut`, and `FnOnce` where `FnOnce` is expected (owned `self` will be enought for all three)
-* Force variable capture by `move`
+* Force variable capture by move
   * Ownership of variable will be moved to the closure
   * Closure type will still be deretermined by captured variables usage, not `move` keyword (can be any of `Fn`, `FnMut`, `FnOnce`)
   * Useful for moving ownership to another thread
@@ -276,20 +276,25 @@
 
 
 ## Concurrency
-#### threads
-* spawn, sleep, join, move
-#### channels
-* send, recv, try_recv
-* ownership transfer
-* receiving via iterator
-* cloning transmitter
-#### shared state concurrency 
-* `Mutex`, lock, `LockResult<MutexGuard, Err>`
-* Drop&Deref implementation
-* Arc
-#### Send & Sync
-* T: Send = T can be sent to another thread
-* T: Sync = T is safe to be referenced from another thread (&T implements Send)
+* Models
+  * green-threads M:N - not part of Rust std lib (requires runtime)
+  * using OS threads 1:1
+* Threads
+  * `spawn`, `sleep`, `join`
+* Channels
+  * `send`, `recv`, `try_recv`
+  * ownership transfer via `send`
+  * receiving via iterator
+  * cloning transmitter (`mpsc`, multiple producer, single consumer)
+* Shared state concurrency 
+  * `Mutex::lock()` returns `LockResult<MutexGuard, Err>`
+  * `MutexGuard` implements
+	* `Deref` to access value
+	* `Drop` to unlock
+  * `Arc`, the atomic `RC`
+* Send & Sync
+  * T: Send = T can be sent to another thread
+  * T: Sync = T is safe to be referenced from another thread (&T implements Send)
   * Types that consist of types that are Sync, are Sync themselves
 
 
