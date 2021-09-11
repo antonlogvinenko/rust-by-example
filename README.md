@@ -164,11 +164,19 @@
   * define and implement for types
   * default methods
   * ??? associated types
-* ??? Trait objects
-  * `T: Trait` vs `T: dyn Trait` (or `T: Trait`)
-  * object safety
-* https://stackoverflow.com/questions/57754901/what-is-a-fat-pointer
-* https://stackoverflow.com/questions/67767207/why-are-trait-methods-with-generic-type-parameters-object-unsafe
+* Trait objects
+  * `Vec<dyn Trait>`
+	* or legacy version `Vec<Trait>`
+  * Dynamic dispatch (instead of static dispatch - monomorphization)
+	* Compiler doesn't know specific type, which method on which type to call
+	* Uses pointers inside trait to reference methods
+* Object safety
+	* A trait is object safe if following statements are true for all of its methods
+		* Return type isn't `Self` (the exact type of `Self` is unknown, which means dynamic dispatch would be required for method call on the result, too)
+		* There are no generic parameters (table of possible invocations for specific types would be too big or uncalculateable)
+	* More info
+		* https://stackoverflow.com/questions/57754901/what-is-a-fat-pointer
+		* https://stackoverflow.com/questions/67767207/why-are-trait-methods-with-generic-type-parameters-object-unsafe
 
 
 
