@@ -381,5 +381,26 @@ impl<T> GenVal<T> {
 </details>
 
 ## Rust resources
+* https://blog.adamchalmers.com/pin-unpin/
 * https://tokio.rs/blog/2021-09-console-dev-diary-1
 * https://deterministic.space/secret-life-of-cows.html
+* https://blog.sunfishcode.online/rust-programs-entirely-in-rust/
+* https://smallcultfollowing.com/babysteps//blog/2021/09/08/rustacean-principles/
+* https://blog.cloudflare.com/workers-rust-sdk/
+* https://blog.rust-lang.org/inside-rust/2021/09/06/Splitting-const-generics.html
+* https://fettblog.eu/rust-error-handling/
+* https://matklad.github.io/2021/09/04/fast-rust-builds.html
+* https://paper.dropbox.com/doc/libz-blitz--BSGvASWRAXciw3AgxeUZ7678Ag-ymXpoWVNDwVDigdrJ5o49
+* https://blog.yoshuawuyts.com/async-overloading/
+* https://cryptography.rs
+* https://alexis-lozano.com/hexagonal-architecture-in-rust-1/
+* https://dev.to/somedood/optimizing-immutable-strings-in-rust-2ahj
+* https://dev.to/davidedelpapa/rust-for-data-science-tutorial-1-4g5j
+* https://medium.com/@glebpomykalov/lets-overtake-go-fasthttp-with-rust-hyper-b2d1004914f
+* https://adventures.michaelfbryan.com/posts/daily/slice-patterns/
+* https://quietmisdreavus.net/code/2018/01/10/not-a-layer-cake-analogy/
+* http://www.cmyr.net/blog/rust-gui-infra.html
+* https://blog.kdheepak.com/loading-a-rust-library-as-a-lua-module-in-neovim.html
+* https://blog.polybdenum.com/2021/08/09/when-zero-cost-abstractions-aren-t-zero-cost.html
+* https://cheats.rs
+* https://kerkour.com/blog/rust-avoid-lifetimes/
