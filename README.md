@@ -379,3 +379,7 @@ impl<T> GenVal<T> {
 }
 ```
 </details>
+
+## Rust resources
+* https://tokio.rs/blog/2021-09-console-dev-diary-1
+* https://deterministic.space/secret-life-of-cows.html
