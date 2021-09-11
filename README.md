@@ -308,12 +308,16 @@
 
 
 ## Pattern matching
-* refutable vs irrefutable
+* Where: `match`, `if let`, `while let`, `for`, `let`, function parameters
+* Refutable vs irrefutable patterns
 * syntax
   * literals, variables
   * multiple patterns, ranges
-  * destructuring structs, enums, nested
-  * ignoring values: _, nested _,  unused-variable, ..
+  * destructuring structs, enums, tuples; nested
+  * ignoring values:
+	* ignore value: `_`, nested `_`
+	* ignoring unused-variable: start it with _
+	* rest of the value: cut off with `..`
   * extra conditionals
   * @ bindings
 
