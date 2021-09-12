@@ -45,13 +45,8 @@
 	* `a` can't be read and written through the owner
 	* `b` can't be written but can be read through the owner
 	* Whole tuple can't be read and written through the owner
-	
-* ??? dereferencing
-* ??? automatic dereferencing https://doc.rust-lang.org/book/ch05-03-method-syntax.html
-* ??? scope vs lifetime
-* ??? chain of mut
-* ??? rebinding
-* ??? associated functions
+
+
 
 
 
@@ -386,6 +381,16 @@
   * `derive` attribute: derive a trate, i.e. implement a trait for structs and enums
   * attribute-like: implement new attributes (i.e. on `derive` level) for structs, enums, functions etc.
   * function-like
+
+
+
+## To cover in more detail:
+* ??? dereferencing
+* ??? automatic dereferencing https://doc.rust-lang.org/book/ch05-03-method-syntax.html
+* ??? scope vs lifetime
+* ??? chain of mut
+* ??? rebinding
+* ??? associated functions
 
 
 
