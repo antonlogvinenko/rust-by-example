@@ -252,6 +252,11 @@
   * Ownership of variable will be moved to the closure
   * Closure type will still be deretermined by captured variables usage, not `move` keyword (can be any of `Fn`, `FnMut`, `FnOnce`)
   * Useful for moving ownership to another thread
+* Function pointers
+  * fn() -> type: for both functions and closures
+  * functions: all of Fn, FnMut, FnOnce, closures: some of them
+* Returning closures
+  * return `Box<dyn Fn(i32) -> i32>`
 
 
 
@@ -357,8 +362,7 @@
 
 
 
-
-## Types
+## Advamced Types
 * `newtype`
   * Avoid confusion with units
   * Expose different API
@@ -376,20 +380,11 @@
 
 
 
-
-## Advanced functions and closures
-  * function pointers
-	* fn() -> type: for both functions and closures
-	* functions: all of Fn, FnMut, FnOnce, closures: some of them
-  * returning closures
-	* return `Box<dyn Fn(i32) -> i32>`
-
-
-
 ## Macros
-* declarative
+* Declarative with `macro-rules`
 * procedural
-  * derive & attribute-like
+  * `derive` attribute: derive a trate, i.e. implement a trait for structs and enums
+  * attribute-like: implement new attributes (i.e. on `derive` level) for structs, enums, functions etc.
   * function-like
 
 
