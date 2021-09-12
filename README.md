@@ -153,8 +153,9 @@
 		* In where clause `where T: Trait1 + Trait2 + 'lifetime`
 		* In fn args and return type: `impl T1 + T2`
 	* Unique
-		* For definitions of `enum`, `struct`, `trait`, `type`: defaults for type parameters, e.g. `<T=i32>`
+		* For definitions of `enum`, `struct`, `trait`, `type`: default type parameter, e.g. `<T=i32>`
 		* For implementations in `impl` block: specific types instead of generics
+		* In `trait` definition: specifying a supertrait to require it on types implementing the trait under definition
 * Special interesting cases:
   * Replace type parameter with specific type in `impl` block and implement method/trait for specific parametrezation of the type
   * Set restrictions for a type parameter in `impl` block and implement method/trait for a subset of types described by restrictions
@@ -167,7 +168,7 @@
 * Traits
   * define and implement for types
   * default methods
-  * ??? associated types
+  * associated types: allow only one implementation of a trait for a type
 * Trait objects
   * `Vec<dyn Trait>`
 	* or legacy version `Vec<Trait>`
@@ -181,6 +182,14 @@
 	* More info
 		* https://stackoverflow.com/questions/57754901/what-is-a-fat-pointer
 		* https://stackoverflow.com/questions/67767207/why-are-trait-methods-with-generic-type-parameters-object-unsafe
+* Disambiguation
+  * passing `self` to the specific interface (`Person::fly(&person)`, `Wizard::fly(&wizard)`)
+	* works for methods
+  * casting variable `<Type as Trait>::method_name()`
+	* works for methods and associated functions
+* Orphan instances and orphan rulw
+  * When implementing a train on a type, either trait or type (or both) must be defined in current scope
+  * Using `newtype` pattern to overcome orphan rule
 
 
 
@@ -348,16 +357,8 @@
 
 
 
-#### Advanced traits
-* associated type: allow only one implementation of a trait for a type
-* default generic parameters and operator overloading
-* disambiguation
-  * passing self to specific interface
-  * casting variable `<Type as Trait>::method_name()`
-* using supertraits
-* `newtype` pattern to overcome orphan rule
 
-#### Aadvanced types
+## Aadvanced types
 * `newtype`
   * Avoid confusion with units
   * Expose different API
@@ -369,17 +370,23 @@
   * `T` is treated as `T: Sized`; use `?Sized` for both known and not known sizes
   * DST have extra bit of data to specify length
   * otherwise put behind a pointer of some kind
-* Advanced functions and closures
+
+
+
+## Advanced functions and closures
   * function pointers
 	* fn() -> type: for both functions and closures
 	* functions: all of Fn, FnMut, FnOnce, closures: some of them
   * returning closures
 	* return `Box<dyn Fn(i32) -> i32>`
-* Macros
-  * declarative
-  * procedural
-	* derive & attribute-like
-	* function-like
+
+
+
+## Macros
+* declarative
+* procedural
+  * derive & attribute-like
+  * function-like
 
 
 
