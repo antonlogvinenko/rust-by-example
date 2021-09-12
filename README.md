@@ -55,11 +55,15 @@
 
 
 
-## Constants
-* `const` keyword and `mut` not allowed
-* type annotation required
-* can be declared in any scope, including the global scope
-* can only be set to a constant expression
+## Constants vs static
+* Constants
+  * `const` keyword. `mut` not allowed
+  * type annotation required
+  * can be declared in any scope (local or global)
+  * can only be set to a constant expression
+* Static variables
+  * Static location in memory
+  * Can be mutated (unsafe)
 
 
 
@@ -337,10 +341,12 @@
   * Calling unsafe function or method
 	* Means fn has requirements that must be upheld that Rust can't guarantee
 	* Creating safe abstraction
-	* Extern functions
-  * Accessing/modifying static variable
-  * Implementing unsafe trait
-  * Accessing union fields
+	* `Extern `functions
+* Accessing/modifying static variable
+  * `Unsafe trait`: defining and implementing
+  * Accessing `union` fields (unions for interfacing C code)
+
+
 
 #### Advanced traits
 * associated type: allow only one implementation of a trait for a type
