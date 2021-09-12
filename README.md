@@ -358,18 +358,22 @@
 
 
 
-## Aadvanced types
+## Types
 * `newtype`
   * Avoid confusion with units
   * Expose different API
 * Type synonyms: `type` to reduce repetition
 * Type that never returns: `!` can be coerced to any other type
 * DST types
-  * must know size
-  * `Sized` trait (auto implemented if all components are Sized)
-  * `T` is treated as `T: Sized`; use `?Sized` for both known and not known sizes
+  * Size of data must be known at compile time
+  * By default it is assumed the type is known
+	* `Sized` trait (auto implemented if all components are Sized)
+	* `T` bound is always treated as `T: Sized`
+  * If size is unknown
+	* Use `?Sized` for specify that types with known and unknown size can be accepted
+	* Put behind a pointer of some kind
   * DST have extra bit of data to specify length
-  * otherwise put behind a pointer of some kind
+
 
 
 
