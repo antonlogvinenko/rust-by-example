@@ -323,24 +323,24 @@
 
 
 
-## Advanced features
-
-#### Unsafe Rust
-* why: conservative static checks & low level standard libraries
-* unsafe block: isolation
+## Unsafe Rust
+* Why: conservative static checks & low level standard libraries
+* Unsafe block:
+  * Enables 5 new features (doesn't turn off borrow checker, etc)
+  * Provides isolation of unsafe code
 * 5 features
-  * Dereferencing a raw pointer
-	* ignore borrowing rules
+  * Dereferencing a raw pointer (*const or *mut, can be created in safe code)
+	* ignore borrowing rules for raw pointers
 	* possibly invalid memory
 	* can be null
 	* no automatic cleanup
   * Calling unsafe function or method
-	* what is unsafe function
-	* creating safe abstraction
-	* extern functions
-  * accessing/modifying static variable
-  * implementing unsafe trait
-  * accessing union fields
+	* Means fn has requirements that must be upheld that Rust can't guarantee
+	* Creating safe abstraction
+	* Extern functions
+  * Accessing/modifying static variable
+  * Implementing unsafe trait
+  * Accessing union fields
 
 #### Advanced traits
 * associated type: allow only one implementation of a trait for a type
@@ -376,23 +376,8 @@
 	* function-like
 
 
-Generics available in: Types, traits, functions, impl methods, impl traits
-All of them introduce generic type parameters with restrictions (where or in-place)
 
-<details>
-<summary>code sample</summary>
-
-```rust
-struct GenVal<T>(T);
-impl<T> GenVal<T> {
-	fn value(&self) -> &T {
-		&self.0
-	}
-}
-```
-</details>
-
-## Rust resources
+## Some Rust resources
 * https://blog.adamchalmers.com/pin-unpin/
 * https://tokio.rs/blog/2021-09-console-dev-diary-1
 * https://deterministic.space/secret-life-of-cows.html
