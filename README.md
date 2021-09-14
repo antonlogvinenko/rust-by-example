@@ -385,12 +385,9 @@
 
 
 ## To cover in more detail:
-* ??? dereferencing
 * ??? automatic dereferencing https://doc.rust-lang.org/book/ch05-03-method-syntax.html
 * ??? scope vs lifetime
 * ??? chain of mut
-* ??? rebinding
-* ??? associated functions
 
 
 
