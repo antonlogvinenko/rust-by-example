@@ -1,20 +1,20 @@
+mod attributes;
+mod cargo;
+mod crates;
 mod custom_types;
-mod primitives;
-mod printing;
-mod variable_binding;
+mod error_handling;
 mod expressions;
 mod flow_of_control;
 mod functions;
-mod modules;
-mod crates;
-mod cargo;
-mod attributes;
 mod generics;
-mod scoping_rules;
-mod traits;
 mod macro_rules;
-mod error_handling;
+mod modules;
+mod primitives;
+mod printing;
+mod scoping_rules;
 mod std_library_types;
+mod traits;
+mod variable_binding;
 
 //todo make code runnable?
 //todo better comments?

@@ -146,11 +146,13 @@
 	* Common
 		* In declaration `<T: Trait1 + Trait2 + 'lifetime>`
 		* In where clause `where T: Trait1 + Trait2 + 'lifetime`
-		* In fn args and return type: `impl T1 + T2`
-	* Unique
-		* For definitions of `enum`, `struct`, `trait`, `type`: default type parameter, e.g. `<T=i32>`
-		* For implementations in `impl` block: specific types instead of generics
-		* In `trait` definition: specifying a supertrait to require it on types implementing the trait under definition
+	* Fn
+		* In args and return type: `impl T1 + T2`
+	* In definition of `trait`'s
+		* Default type parameter, e.g. `<T=i32>`		
+		* Specifying a supertrait to require it on types implementing the trait under definition
+	* `impl`s
+		* specific types in place of generics
 * Special interesting cases:
   * Replace type parameter with specific type in `impl` block and implement method/trait for specific parametrezation of the type
   * Set restrictions for a type parameter in `impl` block and implement method/trait for a subset of types described by restrictions

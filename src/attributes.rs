@@ -15,14 +15,14 @@
  * #[attribute(key = "value")]
  * #[attribute(value)]
  * #[attribute(value1, value2, value3, value4)]
- * 
+ *
  * Conditionals:
  * #[cfg(...)] attribute
  * cfg!(...) macro
  * #[cfg(custom_condition)] and cfg!(some_condition) if --cfg passed to compiler "rustc --cfg some_condition"
  */
 
- //if "lib", then no longer need to pass --crate-type to rustc
+//if "lib", then no longer need to pass --crate-type to rustc
 //#![crate_type = "bin"]
 //#![crate_name = "rust_by_example"]
 
@@ -30,23 +30,19 @@
 fn dead_code() {}
 
 fn configuration() {
-     #[cfg(target_os = "linux")]
-     fn are_you_on_linux() {
+    #[cfg(target_os = "linux")]
+    fn are_you_on_linux() {}
 
-     }
-     
-     #[cfg(not(target_os = "linux"))]
-     fn are_you_not_on_linux() {
-          
-     }
+    #[cfg(not(target_os = "linux"))]
+    fn are_you_not_on_linux() {}
 
-     if cfg!(target_os = "linux") {
-          are_you_not_on_linux();
-     } else {
-          // are_you_on_linux();
-     }
+    if cfg!(target_os = "linux") {
+        are_you_not_on_linux();
+    } else {
+        // are_you_on_linux();
+    }
 }
 
 pub fn main() {
-     configuration();
+    configuration();
 }
