@@ -165,7 +165,12 @@
 * Traits
   * define and implement for types
   * default methods
-  * associated types: allow only one implementation of a trait for a type
+  * associated methods
+  * associated consts
+  * relationships between types
+	* associated types: allow only one implementation of a trait for a type (+ iterators)
+	* generic traits (+ operator overloading)
+		* orphan rule upd: can modify a foreign trait for a foreign type if the parameter is local
 * Trait objects
   * `Vec<dyn Trait>`
 	* or legacy version `Vec<Trait>`
