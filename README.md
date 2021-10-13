@@ -141,18 +141,15 @@
 
 ## Generics, traits, lifetimes
 * Generics
-  * Available for functions, structs, enums, methods
-  * Bounds (type restrictions):
-	* Common
+  * Available for functions, structs, enums, methods, traits, and `impl`s
+  * Type restrictions for generic parameters:
+	* Bounds
 		* In declaration `<T: Trait1 + Trait2 + 'lifetime>`
 		* In where clause `where T: Trait1 + Trait2 + 'lifetime`
-	* Fn
-		* In args and return type: `impl T1 + T2`
-	* In definition of `trait`'s
-		* Default type parameter, e.g. `<T=i32>`		
-		* Specifying a supertrait to require it on types implementing the trait under definition
-	* `impl`s
-		* specific types in place of generics
+		* In function's args and return type: `impl Trait1 + Trait2`
+	* Specific types
+		* In generic traits, default type parameter, e.g. `<T=i32>`
+		* In `impl`s, specific types in place of generics
 * Special interesting cases:
   * Replace type parameter with specific type in `impl` block and implement method/trait for specific parametrezation of the type
   * Set restrictions for a type parameter in `impl` block and implement method/trait for a subset of types described by restrictions
@@ -167,6 +164,7 @@
   * default methods
   * associated methods
   * associated consts
+  * supertraits
   * relationships between types
 	* associated types: allow only one implementation of a trait for a type (+ iterators)
 	* generic traits (+ operator overloading)
