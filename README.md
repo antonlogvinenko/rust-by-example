@@ -150,8 +150,11 @@
 	* Specific types
 		* In generic traits, default type parameter, e.g. `<T=i32>`
 		* In `impl`s, specific types in place of generics
+* How many instances
+  * associated type - hiding generic parameter
+  * specific orphan rule for generic traits
 * Special interesting cases:
-  * Replace type parameter with specific type in `impl` block and implement method/trait for specific parametrezation of the type
+  * Replace type parameter with specific type in `impl` block and implement method/trait for specific parametrization of the type
   * Set restrictions for a type parameter in `impl` block and implement method/trait for a subset of types described by restrictions
 * Performance: monomorphization
   * e.g. find all specific uses of `Option<T>` and generate definitions and functions for each one
