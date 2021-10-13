@@ -190,7 +190,7 @@
 	* works for methods
   * casting variable `<Type as Trait>::method_name()`
 	* works for methods and associated functions
-* Orphan instances and orphan rulw
+* Orphan instances and orphan rule
   * When implementing a train on a type, either trait or type (or both) must be defined in current scope
   * Using `newtype` pattern to overcome orphan rule
 
