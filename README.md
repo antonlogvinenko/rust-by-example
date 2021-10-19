@@ -169,8 +169,8 @@
   * associated consts
   * supertraits
   * relationships between types
-	* associated types: allow only one implementation of a trait for a type (+ iterators)
-	* generic traits (+ operator overloading)
+	* Single instance. Associated types allow only one implementation of a trait for a type (e.g., iterators)
+	* Multiplle instances. Generic traits (e.g., operator overloading)
 		* orphan rule upd: can modify a foreign trait for a foreign type if the parameter is local
 * Trait objects
   * `Vec<dyn Trait>`
