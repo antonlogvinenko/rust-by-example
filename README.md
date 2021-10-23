@@ -286,7 +286,7 @@
 	* Handling`*` on pointer-like type: Rust uses appropriate `deref` to get rid of intermediate type:
 		* `*x` translates to `*std.ops.Deref::deref(&x)` in immutable place
 		* `*x` translates to `*std.ops.DerefMut::deref_mut(mut x)` in mutable place
-	* `Deref coercion` for function/method arguments: adding as much `*` (`deref` calls) as required
+	* `Deref coercion` for function/method arguments: adding as much `deref`/`deref_mut` calls as required
 * `Drop`
 	* called when variables goes out of scope
 	* To clean up a value early: `mem::std::drop`
