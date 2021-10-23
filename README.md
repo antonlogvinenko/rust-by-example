@@ -279,13 +279,15 @@
 	* type whose size can't be known at compile type (recursive type)
 * A smart pointer implements `Deref` and `Drop`
   * `Deref`
-	* `deref` returns a reference
-	* `*x` makes compiler decide with kind of `deref` to invoke and then does: *x -> *(x.deref())
+	* Following conversions are possible:
 		* From `&T` to `&U` when `T: Deref<Target=U>`
 		* From `&mut T` to `&mut U` when `T: DerefMut<Target=U>`
 		* From `&mut T` to `&U` when `T: Deref<Target=U>`
-	* deref coersion on arguments for functions & methods (i.e. x => *x => *(x.deref()))
-  * `Drop`
+	* Handling`*` on pointer-like type: Rust uses appropriate `deref` to get rid of intermediate type:
+		* `*x` translates to `*std.ops.Deref::deref(&x)` in immutable place
+		* `*x` translates to `*std.ops.DerefMut::deref_mut(mut x)` in mutable place
+	* `Deref coercion` for function/method arguments: adding as much `*` (`deref` calls) as required
+* `Drop`
 	* called when variables goes out of scope
 	* To clean up a value early: `mem::std::drop`
 * RC, reference counting, multiple ownership, i.e. ownership+Box
