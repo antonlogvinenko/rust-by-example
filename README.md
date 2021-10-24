@@ -278,15 +278,15 @@
   	* unspecified type inside (that only implements specific traits)
 	* type whose size can't be known at compile type (recursive type)
 * A smart pointer implements `Deref` and `Drop`
-  * `Deref`
-	* Following conversions are possible:
-		* From `&T` to `&U` when `T: Deref<Target=U>`
-		* From `&mut T` to `&mut U` when `T: DerefMut<Target=U>`
-		* From `&mut T` to `&U` when `T: Deref<Target=U>`
-	* Handling`*` on pointer-like type: Rust uses appropriate `deref` to get rid of intermediate type:
-		* `*x` translates to `*std.ops.Deref::deref(&x)` in immutable place
-		* `*x` translates to `*std.ops.DerefMut::deref_mut(mut x)` in mutable place
-	* `Deref coercion` for function/method arguments: adding as much `deref`/`deref_mut` calls as required
+* `Deref`
+  * Following conversions are possible:
+	* From `&T` to `&U` when `T: Deref<Target=U>`
+	* From `&mut T` to `&mut U` when `T: DerefMut<Target=U>`
+	* From `&mut T` to `&U` when `T: Deref<Target=U>`
+  * Handling`*` on pointer-like type: Rust uses appropriate `deref` to get rid of intermediate type:
+	* `*x` translates to `*std.ops.Deref::deref(&x)` in immutable place
+	* `*x` translates to `*std.ops.DerefMut::deref_mut(mut x)` in mutable place
+  * `Deref coercion` for function/method arguments: adding as much `deref`/`deref_mut` calls as required
 * `Drop`
 	* called when variables goes out of scope
 	* To clean up a value early: `mem::std::drop`
