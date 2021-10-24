@@ -296,9 +296,28 @@
   * Avoiding memory leaks by switching between `weak_count`/`strong_count`
 	* `downgrade` on `RC<T>` to get `Weak<T>`
 	* `upgrade` on `Weak<T>` to get `Option<RC<T>>`
-* `AsRef`, `AsMut`
-* `Borrow`, `BorrowMut`
+* `AsRef<T>`, `AsMut<T>`
+  * Can borrow `&T` or `&mut T` efficiently
+  * If `U` implements `AsRef<T>` or `AsMut<T>` then `&U` does so, too (`U` can be unsized and only used as `&U`)
+  * Multiple implementations
+* `Borrow<T>`, `BorrowMut<T>`
+  * Similar to `AsRef`/`AsMut` but borrowed value must be hashed and compared exactly as the owner
+  * `T: Borrow<T>` (`T` can be borrowed from itself in case user wants to use the type itself, not something borrowable)
+  * `&mut T` implements `Borrow<T>` (to borrow a shared reference from a mutable reference; emulates Rust's `&mut T` to `T` coercion)
+  * Multiple implementations
+  * Used by compiler to coerce types
 * `ToOwned`
+  * to get an owned value from reference: `to_owned` on `U` can return any `T` you can borrow `U` from
+  * if `T: Borrow<U>` then it's possible to make `U: Owned` with method `to_owned(self: &U) -> T`
+  * Single implementation
+* `From`, `Into`
+  * Converting between two owned types
+  * `Into`: converting function arguments
+  * `From` is a generic constructor
+  * Having one gives you another
+  * Since ownership is moved, memory can be reused, so efficient conversions are possible
+* `TryFrom`, `TryInto`
+  * As `From`/`Into`, but fallible
 * `RefCell`, interior mutability, i.e. &+&mut+Box+runtimechecks
   * Methods
 	* `borrow` returns `Ref<T>`
@@ -317,8 +336,8 @@
   * `into_owned` method
     * if stores owned value then returns it (moving ownership)
 	* if stores borrowed value, converts it to owned using `to_owned`, stores, and then returns it (moving ownership)
-* `From`, `Into`
-* `TryFrom`, `TryInto`
+	
+	
 
 ## Concurrency
 * Models
