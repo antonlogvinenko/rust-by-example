@@ -290,7 +290,7 @@
 * `Drop`
 	* called when variables goes out of scope
 	* To clean up a value early: `mem::std::drop`
-* RC, reference counting, multiple ownership, i.e. ownership+Box
+* `RC`, reference counting, multiple ownership, i.e. ownership+Box
   * `clone()` to increase counter
   * `Drop` trait to decrease counter (and cleanup owned resource when 0)
   * Avoiding memory leaks by switching between `weak_count`/`strong_count`
@@ -302,7 +302,7 @@
   * Multiple implementations
 * `Borrow<T>`, `BorrowMut<T>`
   * Similar to `AsRef`/`AsMut` but borrowed value must be hashed and compared exactly as the owner
-  * `T: Borrow<T>` (`T` can be borrowed from itself in case user wants to use the type itself, not something borrowable)
+	* `T: Borrow<T>` (`T` can be borrowed from itself in case user wants to use the type itself, not something borrowable)
   * `&mut T` implements `Borrow<T>` (to borrow a shared reference from a mutable reference; emulates Rust's `&mut T` to `T` coercion)
   * Multiple implementations
   * Used by compiler to coerce types
