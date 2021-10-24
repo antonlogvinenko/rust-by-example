@@ -296,6 +296,9 @@
   * Avoiding memory leaks by switching between `weak_count`/`strong_count`
 	* `downgrade` on `RC<T>` to get `Weak<T>`
 	* `upgrade` on `Weak<T>` to get `Option<RC<T>>`
+* `AsRef`, `AsMut`
+* `Borrow`, `BorrowMut`
+* `ToOwned`
 * `RefCell`, interior mutability, i.e. &+&mut+Box+runtimechecks
   * Methods
 	* `borrow` returns `Ref<T>`
@@ -303,8 +306,19 @@
   * Either one mutable or multiple immutable references
   * Borrowing rules are checked at runtime
   * `Rc<RefCell<T>>` pattern: multiple owners + interior mutability
-
-
+* `Cow`, clone on write
+  * initialized with either borrowed or owned value
+  * implements `Deref`
+	* if stores borrowed value then hands out the reference
+	* if stores owned value then borrows a shared reference to the owned value
+  * `to_mut` method
+	* if stores owned value then borrows a mut ref to the owned value
+	* if stores borrowed value, converts it to owned using `to_owned`, stores, and borrows a mut ref to the owned value
+  * `into_owned` method
+    * if stores owned value then returns it (moving ownership)
+	* if stores borrowed value, converts it to owned using `to_owned`, stores, and then returns it (moving ownership)
+* `From`, `Into`
+* `TryFrom`, `TryInto`
 
 ## Concurrency
 * Models
