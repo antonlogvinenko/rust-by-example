@@ -262,8 +262,14 @@
   * Closure type will still be deretermined by captured variables usage, not `move` keyword (can be any of `Fn`, `FnMut`, `FnOnce`)
   * Useful for moving ownership to another thread
 * Function pointers
+  * Closures that don't capture anything can have `fn` type
   * fn() -> type: for both functions and closures
   * functions: all of Fn, FnMut, FnOnce, closures: some of them
+* Sizes
+  * `fn` is `usize`, the same arguments and result means the same specific type, known size
+  * closures store extra information about captured variables, the same arguments and result doesn't mean the same type, we only know interfaces, unknown size
+	* pros: can inline
+	* cons: gotta use `Box<dyn ...>` to store different closures
 * Returning closures
   * return `Box<dyn Fn(i32) -> i32>`
 * Where 3 types come from
