@@ -251,6 +251,12 @@
 	* Can only use `Fn` where `Fn` is expected (`&self` will be enough only for `Fn`)
 	* Can use both `Fn` and `FnMut` where `FnMut` is expected (`&mut self` will be enough for `Fn` and `FnMut`)
 	* Can use any of `Fn`, `FnMut`, and `FnOnce` where `FnOnce` is expected (owned `self` will be enought for all three)
+* Copying and cloning
+  * General rule: if everything a closure refers to is `Copy` then it's `Copy` too. Same for `Clone`.
+  * Specific rules
+	* Since `Fn` only has shared references (they all implement `Copy` and `Clone`) then `Fn` are both `Copy` and `Clone`
+	* Since `FnMut` has `mut` references (which are neither `Copy` nor `Clone`) then `FnMut` is neither `Copy` nor `Clone`
+	* If everything `FnOnce` owns is `Copy`, then it's `Copy` too. Same for `Clone`.
 * Force variable capture by move
   * Ownership of variable will be moved to the closure
   * Closure type will still be deretermined by captured variables usage, not `move` keyword (can be any of `Fn`, `FnMut`, `FnOnce`)
@@ -260,6 +266,10 @@
   * functions: all of Fn, FnMut, FnOnce, closures: some of them
 * Returning closures
   * return `Box<dyn Fn(i32) -> i32>`
+* Where 3 types come from
+  * `FnOnce` is required for cleaning up resources
+  * `FnMut` mutates data and is thread local
+  * `Fn` doesn't mutata data (and forbids others from it) so it's therad safe
 
 
 
