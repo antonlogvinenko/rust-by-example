@@ -302,10 +302,19 @@
 	* `from_fn(FnMut() -> Option<T>) -> Iterator<T>`
 	* `successors(Option<T>, FnMut(T) -> Option<T>)`
   * `drain`, `Range`, `RangeFrom`, `RangeInclusive`, `Option`, `Result`, etc
-* Adaptors
-  * Consuming adaptors (take ownership of the iterator and call the `next` method consuming the iterator)
-  * Iterator adaptors (modify iterator) to produce another iterator
-* `iter`, `iter_mut`, `into_iter` for marking ownership mode for original values
+* Adapters
+  * Consuming adapters (take ownership of the iterator and call the `next` method consuming the iterator)
+  * Iterator adapters (modify iterator) to produce another iterator
+* Iterator adapters
+  * Characteristics
+	* Lazy - no evaluation until consumed
+	* Zero-cost abstraction
+  * Specific adapters
+	* `filter_map` when filtering is based on mapped values and might require some unwrapping
+	* `flatten`, values must implement `IntoIterator`
+	* `DoubleEndedIterator` and `rev`
+	* `by_ref` to borrow `&mut` reference to iterator and temporarily attach other adapters to it
+* Consuming iteraters
 
 
 
