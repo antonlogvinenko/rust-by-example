@@ -285,6 +285,23 @@
 
 
 ## Iterators
+* Basic interfaces:
+  * `Iterator` and `IntoIterator`
+  * Loops accept `IntoIterator`
+  * `Iterator` implements `IntoIterator` and can also be used in a loop
+* Creating iterators
+  * Methods creating iterators
+	* `(&iterable).into_iter()` returns iterator over `&T`
+	* `(&mut iterable).into_iter()` returns iterator over `&mut T`
+	* `(iterable).into_iter()` returns iterator over `T` (i.e. values are moved into consumer)
+  * Shortcuts for creating iterators
+	* `x.iter()` is `(&x).into_iter()`
+	* `x.iter_mut()` is `(&mut x).into_iter()`
+  * Not all types implement all 3 `into_iter` methods; sometimes modifying values violates invariants
+  * Creating using a function
+	* `from_fn(FnMut() -> Option<T>) -> Iterator<T>`
+	* `successors(Option<T>, FnMut(T) -> Option<T>)`
+  * `drain`, `Range`, `RangeFrom`, `RangeInclusive`, `Option`, `Result`, etc
 * Adaptors
   * Consuming adaptors (take ownership of the iterator and call the `next` method consuming the iterator)
   * Iterator adaptors (modify iterator) to produce another iterator
