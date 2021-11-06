@@ -309,14 +309,21 @@
   * Characteristics
 	* Lazy - no evaluation until consumed
 	* Zero-cost abstraction
-  * Specific adapters
+  * Specific adapters (listed most unusual)
 	* `filter_map` when filtering is based on mapped values and might require some unwrapping
 	* `flatten`, values must implement `IntoIterator`
 	* `DoubleEndedIterator` and `rev`
 	* `by_ref` to borrow `&mut` reference to iterator and temporarily attach other adapters to it
-* Consuming iteraters
-
-
+* Consuming iteraters (listed most unusual)
+  * Comparing sequences: `eq`, `lt`, `gt`
+  * `position`, `rposition` (requires `ExactSizedIterator` and `DoubleEndedIterator`)
+  * `fold`, `rfold` (required `DoubleEndedIterator`)
+  * `try_fold`, `try_rfold` - same but returning `Result` or `Option`, stops folding upon `Error` or `None`
+	* many methods are based on `try_fold`, makes sense to speed up this method implementation
+  * `nth`, `nth_back`, they don't take ownership of the iterator, can be called multiple times
+  * `last`, consumes all items even if the iterator is double ended
+  * `collect` and `FromIterator::from_iter` that can be implemented via `Extend` trait
+  * 
 
 ## Smart pointers
 * Box for size of data
