@@ -323,7 +323,7 @@
   * `nth`, `nth_back`, they don't take ownership of the iterator, can be called multiple times
   * `last`, consumes all items even if the iterator is double ended
   * `collect` and `FromIterator::from_iter` that can be implemented via `Extend` trait
-  * 
+  * `partition` via `Default` and `Extend`
 
 ## Smart pointers
 * Box for size of data
