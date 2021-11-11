@@ -489,6 +489,35 @@
 
 
 ## Some Rust resources
+* https://alexis-lozano.com/hexagonal-architecture-in-rust-7/
+* https://nick.groenen.me/posts/rust-error-handling/
+* https://www.lpalmieri.com/posts/error-handling-rust/#errors-for-control-flow
+* https://smallcultfollowing.com/babysteps//blog/2021/11/05/view-types/
+* https://rustacean-station.org/episode/045-sean-arthur/
+* https://paulmck.livejournal.com/66175.html
+* https://whileydave.com/2021/10/26/test-driving-the-rust-model-checker-rmc/
+* https://foundation.rust-lang.org/posts/2021-10-18-crates-io-oncall-ferrous-systems/
+* https://patrickfreed.github.io/rust/2021/10/15/making-slow-rust-code-fast.html
+* https://mabez.dev/blog/posts/esp-rust-18-10-2021/
+* https://vimeo.com/632377558
+* https://odysee.com/@Pipeliner:f/Rust-VFX:a?r=6Ac8ttKMEn1Airp7gL6QvZpi2tcV9DCX
+* https://github.com/skerkour/black-hat-rust/blob/main/ch_02/tricoder/src/main.rs
+* https://nickb.dev/blog/reality-check-for-cloudflare-wasm-workers-and-rust
+* https://epage.github.io/blog/2021/09/learning-rust/
+* https://kerkour.com/rust-on-esp32/
+* https://huonw.github.io/blog/2015/05/finding-closure-in-rust/
+* https://adventures.michaelfbryan.com/posts/rust-best-practices/bad-habits/
+* https://github.com/mgdm/htmlq/blob/master/src/main.rs
+* https://www.fpcomplete.com/blog/rust-asref-asderef/
+* https://paulmck.livejournal.com/62436.html
+* https://nullderef.com/blog/plugin-dynload/
+* https://smallcultfollowing.com/babysteps//blog/2021/10/07/dyn-async-traits-part-4/
+* https://fettblog.eu/rust-enums-wrapping-errors/
+* https://www.getsynth.com/docs/blog/2021/10/11/nightly
+* https://www.micahlerner.com/2021/10/31/rudra-finding-memory-safety-bugs-in-rust-at-the-ecosystem-scale.html
+* https://matthew.science/fuzzing.html
+* https://arunanshub.hashnode.dev/self-referential-structs-in-rust
+* https://nora.codes/post/its-time-to-get-hyped-about-const-generics-in-rust/
 * https://blog.adamchalmers.com/pin-unpin/
 * https://tokio.rs/blog/2021-09-console-dev-diary-1
 * https://deterministic.space/secret-life-of-cows.html
