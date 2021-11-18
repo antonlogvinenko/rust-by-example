@@ -115,7 +115,15 @@
 * Support for slices
   * Range is specified in bytes
   * Slicing allowed only at `char` (UTF-8 scalars) boundaries, otherwise code panics
-
+* Analogy between types
+  * String - &str - Bytestring
+  * Vec<T> - slice &[T] - array &[T, N]
+* Purpose
+  * Unicode: String and &str
+  * Filenames: std::path::PathBuf and &Path
+  * Binary data: Vec<u8> and &[u8]
+  * Env variables, command line arguments: OsString and &OsStr
+  * C libs: std::ffi::CString and &CStr
 
 
 ## Errors
@@ -314,7 +322,7 @@
 	* `flatten`, values must implement `IntoIterator`
 	* `DoubleEndedIterator` and `rev`
 	* `by_ref` to borrow `&mut` reference to iterator and temporarily attach other adapters to it
-* Consuming iteraters (listed most unusual)
+* Consuming iterators (listed most unusual)
   * Comparing sequences: `eq`, `lt`, `gt`
   * `position`, `rposition` (requires `ExactSizedIterator` and `DoubleEndedIterator`)
   * `fold`, `rfold` (required `DoubleEndedIterator`)
@@ -466,7 +474,7 @@
 	* `Sized` trait (auto implemented if all components are Sized)
 	* `T` bound is always treated as `T: Sized`
   * If size is unknown
-	* Use `?Sized` for specify that types with known and unknown size can be accepted
+	* Use `?Sized` to specify that types with known and unknown size can be accepted
 	* Put behind a pointer of some kind
   * DST have extra bit of data to specify length
 
@@ -489,6 +497,7 @@
 
 
 ## Some Rust resources
+* https://blog.yoshuawuyts.com/async-cancellation-1/
 * https://alexis-lozano.com/hexagonal-architecture-in-rust-7/
 * https://nick.groenen.me/posts/rust-error-handling/
 * https://www.lpalmieri.com/posts/error-handling-rust/#errors-for-control-flow
