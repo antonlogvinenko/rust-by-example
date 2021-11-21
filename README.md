@@ -158,9 +158,9 @@
 	* Specific types
 		* In generic traits, default type parameter, e.g. `<T=i32>`
 		* In `impl`s, specific types in place of generics
-* How many instances
-  * associated type - hiding generic parameter
-  * specific orphan rule for generic traits
+* Parameterized traits: how many instances?
+  * associated type - hiding generic parameter (single instance)
+  * specific orphan rule for generic traits (multiple instances)
 * Special interesting cases:
   * Replace type parameter with specific type in `impl` block and implement method/trait for specific parametrization of the type
   * Set restrictions for a type parameter in `impl` block and implement method/trait for a subset of types described by restrictions
@@ -462,7 +462,7 @@
 
 
 
-## Advamced Types
+## Advanced Types
 * `newtype`
   * Avoid confusion with units
   * Expose different API
