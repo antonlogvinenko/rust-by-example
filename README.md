@@ -419,8 +419,10 @@
 	* `Drop` to unlock
   * `Arc`, the atomic `RC`
 * Send & Sync
-  * `T: Send` means `T` can be sent to another thread
-  * `T: Sync` means `T` is safe to be referenced from another thread (i.e. that `&T` implements `Send`)
+  * Definition
+	* `T: Send` means `T` can be sent to another thread
+	* `T: Sync` means `T` is safe to be referenced from another thread (i.e. that `&T` implements `Send`)
+  * Some `Send` types are `Sync`
   * Types made up of `Send` and `Sync` entierly are also `Send` and `Sync`
 
 
