@@ -414,8 +414,12 @@
   * cloning transmitter (`mpsc`, multiple producer, single consumer)
 * Shared state concurrency 
   * `Mutex::lock()` returns `LockResult<MutexGuard, Err>`
+	* Not reentrant (not recursive), deadlocks when called twice in the same thread
+	* When thread holding it panics, `Mutex` is poisoned, all attempts to acquire it lead to panic: to procect programs invariants after the initial panic
   * `MutexGuard` implements
 	* `Deref` to access value
+		* Accessed data lifetime depends on `MutexGuard` lifetime
+		* When `MutexGuard` is out of scoped (dropped, unlocked), compiler will not allow access to the data
 	* `Drop` to unlock
   * `Arc`, the atomic `RC`
 * Send & Sync
@@ -423,7 +427,10 @@
 	* `T: Send` means `T` can be sent to another thread
 	* `T: Sync` means `T` is safe to be referenced from another thread (i.e. that `&T` implements `Send`)
   * Some `Send` types are `Sync`
-  * Types made up of `Send` and `Sync` entierly are also `Send` and `Sync`
+  * Construction
+	* Types made up of `Send` are `Send`
+		* Passing closure to `spawn` requires it to be `Send` which means all its components must be `Send`
+	* Types made up of `Sync` are `Sync`
 
 
 
