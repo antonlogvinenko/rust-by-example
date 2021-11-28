@@ -431,7 +431,12 @@
 	* Types made up of `Send` are `Send`
 		* Passing closure to `spawn` requires it to be `Send` which means all its components must be `Send`
 	* Types made up of `Sync` are `Sync`
-
+* Global variables: sharing `static` variables
+  * `static` variables can't be `mut` (operations become `unsafe`): use types with `interior mutability`
+  * Must be shared between many threads: use types that implement `Sync`
+  * Must be initialized statically, so either:
+	* use `const` functions that compiler can evaluate
+	* or use `lazy_static` crate
 
 
 ## Pattern matching
