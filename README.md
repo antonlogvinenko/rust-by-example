@@ -437,7 +437,11 @@
   * Must be initialized statically, so either:
 	* use `const` functions that compiler can evaluate
 	* or use `lazy_static` crate
-
+* Async programming
+  * Transforming `async` functions
+	* To anonymous type implementing `Future<T>` trait
+	* with `poll` method being a state machine
+	* future B that A depends on will reschedule A once B has a result ready
 
 ## Pattern matching
 * Where: `match`, `if let`, `while let`, `for`, `let`, function parameters
