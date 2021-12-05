@@ -453,7 +453,7 @@
 		* Creating via `pin!`, `Box::pin`, or `Pin::from(boxed)`
 		* Copying via `as_mut`
 	* `Unpin`
-		* Ignoring `Pin`: pinning just takes `&mut` and not ownership & `into_iter` drops `Pin`
+		* Ignoring `Pin`: pinning just takes `&mut` and not ownership & `Pin::into_iter` drops `Pin`
 		* Why it's required
 			* Most types (except polled generated futures) are `Unpin`, i.e. safe to move
 				* `Pin` itself is `Unpin` (safe to move)
