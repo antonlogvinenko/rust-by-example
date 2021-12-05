@@ -454,11 +454,12 @@
 		* Copying via `as_mut`
 	* `Unpin`
 		* Ignoring `Pin`: pinning just takes `&mut` and not ownership & `into_iter` drops `Pin`
-		* Most types (except polled generated futures) are `Unpin`, i.e. safe to move
-		* `Pin` itself is `Unpin` (safe to move)
-		* Some functions require futures implementing `Unpin` (`block_on`, `race`, etc.):
-			* handwritten futures
-			* generated futures that haven't been polled yet
+		* Why
+			* Most types (except polled generated futures) are `Unpin`, i.e. safe to move
+				* `Pin` itself is `Unpin` (safe to move)
+			* Some functions require futures implementing `Unpin` (`block_on`, `race`, etc.):
+				* handwritten futures
+				* generated futures that haven't been polled yet
 		
 	
 ## Pattern matching
