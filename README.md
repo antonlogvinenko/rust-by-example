@@ -587,3 +587,10 @@
 * https://blog.polybdenum.com/2021/08/09/when-zero-cost-abstractions-aren-t-zero-cost.html
 * https://cheats.rs
 * https://kerkour.com/blog/rust-avoid-lifetimes/
+* https://eta.st/2021/03/08/async-rust-2.html
+* https://matklad.github.io//2021/11/27/notes-on-module-system.html
+* https://zulip.com/case-studies/rust/
+* https://leerob.io/blog/rust
+* https://estebank.github.io/rust-iterator-item-syntax.html
+* https://blog.convex.dev/a-tale-of-three-codebases/
+* https://nora.codes/post/its-time-to-get-hyped-about-const-generics-in-rust/
