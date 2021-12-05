@@ -439,10 +439,28 @@
 	* or use `lazy_static` crate
 * Async programming
   * Transforming `async` functions
-	* To anonymous type implementing `Future<T>` trait
-	* with `poll` method being a state machine
-	* future B that A depends on will reschedule A once B has a result ready
-
+	* To the lazy tree of state machines (anonymous types implementing `Future<T>` trait) that can retry at `.await`
+	* Evaluation forced by `block_on` (or similarfunctions) that perform polling of events
+	* Polling types: `spawn`, `spawn_local`, `spawn_blocked`
+  * Pinning
+	* The problem
+		* generated futures that hold captured references to captured local variables inside
+			* safe to move if not polled yet (references aren't initialized)
+			* dangerous to move after polled (references are initialized, moving futurte makes them invalid)
+		* handwritten futures are safe to move
+	* `Pin`
+		* Giving up ownership, moving to anonymous heap location, can't get ownership back
+		* Creating via `pin!`, `Box::pin`, or `Pin::from(boxed)`
+		* Copying via `as_mut`
+	* `Unpin`
+		* Ignoring `Pin`: pinning just takes `&mut` and not ownership & `into_iter` drops `Pin`
+		* most types (except polled generated futures) are `Unpin`, i.e. safe to move
+		* `Pin` itself is `Unpin` (safe to move)
+		* some functions require futures implementing `Unpin` (`block_on`, `race`, etc.):
+			* handwritten futures
+			* generated futures that haven't been polled yet
+		
+	
 ## Pattern matching
 * Where: `match`, `if let`, `while let`, `for`, `let`, function parameters
 * Refutable vs irrefutable patterns
