@@ -334,7 +334,7 @@
   * `partition` via `Default` and `Extend`
 
 ## Smart pointers
-* Box for size of data
+* `Box` for size of data
   * Size too large: leep it on heap and transfer data by moving not copying
   * Size unknown
   	* unspecified type inside (that only implements specific traits)
@@ -422,7 +422,7 @@
 		* When `MutexGuard` is out of scoped (dropped, unlocked), compiler will not allow access to the data
 	* `Drop` to unlock
   * `Arc`, the atomic `RC`
-* Send & Sync
+* `Send` & `Sync`
   * Definition
 	* `T: Send` means `T` can be sent to another thread
 	* `T: Sync` means `T` is safe to be referenced from another thread (i.e. that `&T` implements `Send`)
@@ -440,11 +440,11 @@
 * Async programming
   * Transforming `async` functions
 	* To the lazy tree of state machines (anonymous types implementing `Future<T>` trait) that can retry at `.await`
-	* Evaluation forced by `block_on` (or similarfunctions) that perform polling of events
+	* Evaluation forced by `block_on` (or similar functions) that perform polling of events
 	* Polling types: `spawn`, `spawn_local`, `spawn_blocked`
   * Pinning
 	* The problem
-		* generated futures that hold captured references to captured local variables inside
+		* generated futures that hold captured references to captured local variables inside are:
 			* safe to move if not polled yet (references aren't initialized)
 			* dangerous to move after polled (references are initialized, moving futurte makes them invalid)
 		* handwritten futures are safe to move
@@ -454,9 +454,9 @@
 		* Copying via `as_mut`
 	* `Unpin`
 		* Ignoring `Pin`: pinning just takes `&mut` and not ownership & `into_iter` drops `Pin`
-		* most types (except polled generated futures) are `Unpin`, i.e. safe to move
+		* Most types (except polled generated futures) are `Unpin`, i.e. safe to move
 		* `Pin` itself is `Unpin` (safe to move)
-		* some functions require futures implementing `Unpin` (`block_on`, `race`, etc.):
+		* Some functions require futures implementing `Unpin` (`block_on`, `race`, etc.):
 			* handwritten futures
 			* generated futures that haven't been polled yet
 		
