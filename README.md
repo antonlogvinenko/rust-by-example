@@ -441,7 +441,10 @@
   * Transforming `async` functions
 	* To the lazy tree of state machines (anonymous types implementing `Future<T>` trait) that can retry at `.await`
 	* Evaluation forced by `block_on` (or similar functions) that perform polling of events
-	* Polling types: `spawn`, `spawn_local`, `spawn_blocked`
+	* Polling types:
+		* `spawn_local` add task to current thread's task set, polled by current thread
+		* `spawn` add task to pool of worker threads, polled by separathe (different) threads
+		* `spawn_blocked` add task to a separate thread, polled by the specific thread
   * Pinning
 	* The problem
 		* generated futures that hold captured references to captured local variables inside are:
@@ -594,3 +597,8 @@
 * https://estebank.github.io/rust-iterator-item-syntax.html
 * https://blog.convex.dev/a-tale-of-three-codebases/
 * https://nora.codes/post/its-time-to-get-hyped-about-const-generics-in-rust/
+* https://www.thecodedmessage.com/posts/hello-rust/
+* https://github.com/trickster0/OffensiveRust
+* https://linuxfoundation.org/webinars/rust-for-linux-writing-abstractions-and-drivers/
+* https://www.youtube.com/watch?v=IPmRDS0OSxM
+
