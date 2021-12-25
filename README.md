@@ -177,13 +177,13 @@
   * associated consts
   * supertraits
   * Generic traits: relations between types
-	* via associated types
+	* trait with associated types
 		* single instance (purpose of associated types)
 		* usual orphan rule
 		* e.g. iterators
-	* via generics
+	* parameterized trait
 		* multiple instances
-		* extende orphan rule
+		* extended orphan rule
 		* e.g. operator overloading
 * Trait objects
   * `Vec<dyn Trait>`
