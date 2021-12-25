@@ -176,12 +176,12 @@
   * associated methods
   * associated consts
   * supertraits
-  * Generic traits: relations between types
-	* trait with associated types
+  * parameterized traits: relations between types
+	* traits with associated types
 		* single instance (purpose of associated types)
 		* usual orphan rule
 		* e.g. iterators
-	* parameterized trait
+	* generic traits
 		* multiple instances
 		* extended orphan rule
 		* e.g. operator overloading
