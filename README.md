@@ -443,7 +443,7 @@
 	* Evaluation forced by `block_on` (or similar functions) that perform polling of events
 	* Polling types:
 		* `spawn_local` add task to current thread's task set, polled by current thread
-		* `spawn` add task to pool of worker threads, polled by separathe (different) threads
+		* `spawn` add task to pool of worker threads, polled by separate (different) threads
 		* `spawn_blocked` add task to a separate thread, polled by the specific thread
   * Pinning
 	* The problem
@@ -461,7 +461,7 @@
 			* Most types (except polled generated futures) are `Unpin`, i.e. safe to move
 				* `Pin` itself is `Unpin` (safe to move)
 			* Some functions require futures implementing `Unpin` (`block_on`, `race`, etc.):
-				* handwritten futures
+				* handwritten futures (checked by the compiler)
 				* generated futures that haven't been polled yet
 		
 	
