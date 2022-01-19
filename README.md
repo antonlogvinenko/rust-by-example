@@ -77,11 +77,11 @@
     * Relative (start with `self` or `super`)
   * Visibility rules
 	* Module sees everything in ancestors
-	* Modules sees on pub path in descendants
+	* Module sees through all pub paths in descendants
 		* Everything is private by default
 		* `pub` to make public
 		* `pub(X)` may add additional restrictions
-  * Referring to visible objects
+  * Referring to objects visible to current module:
 	* With `::` and path
 	* Brining in scope with `use` keyword
 		* module or its component (can be renamed with `as`)
@@ -277,7 +277,7 @@
 * Function pointers
   * Closures that don't capture anything can have `fn` type
   * fn() -> type: for both functions and closures
-  * functions: all of Fn, FnMut, FnOnce, closures: some of them
+  * functions implement: all of `Fn`, `FnMut`, `FnOnce`; closures implement: some of `Fn`, `FnMut`, `FnOnce`
 * Sizes
   * `fn` is `usize`, the same arguments and result means the same specific type, known size
   * closures store extra information about captured variables, the same arguments and result doesn't mean the same type, we only know interfaces, unknown size
