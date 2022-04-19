@@ -164,6 +164,9 @@
 * Special interesting cases:
   * Replace type parameter with specific type in `impl` block and implement method/trait for specific parametrization of the type
   * Set restrictions for a type parameter in `impl` block and implement method/trait for a subset of types described by restrictions
+  * `impl Bound` vs `T: Bound`:
+	* `x: &impl Bound` and `y: &impl Bound` means `x` and `y` might have different types implementing `Bound`
+	* `<T: Bound>` with `x: &T` and `y: &T` means `x` and `y` have the same type implementing `Bound`
 * Performance: monomorphization
   * e.g. find all specific uses of `Option<T>` and generate definitions and functions for each one
 
