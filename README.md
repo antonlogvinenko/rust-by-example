@@ -540,6 +540,12 @@
 
 
 ## Some Rust resources
+* https://blog.adamchalmers.com/making-a-dns-client/
+* https://www.ralfj.de/blog/2022/04/11/provenance-exposed.html
+* https://cliffle.com/blog/rust-mutexes
+* https://gankra.github.io/blah/tower-of-weakenings/
+* https://www.warp.dev/blog/introducing-warp
+* https://devblogs.microsoft.com/oldnewthing/20220418-00/?p=106489
 * https://blog.yoshuawuyts.com/async-cancellation-1/
 * https://alexis-lozano.com/hexagonal-architecture-in-rust-7/
 * https://nick.groenen.me/posts/rust-error-handling/
