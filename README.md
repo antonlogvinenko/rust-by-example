@@ -441,6 +441,15 @@
 	* use `const` functions that compiler can evaluate
 	* or use `lazy_static` crate
 * Async programming
+  * General overview
+   * Syntax and semantics of `async/await`: decouple call from execution
+   * Compilation of `async` functions to `Future`s (tree of state machines)
+   * Connection (avaluation links) between `async` functions (`Future`s)
+	 * Forward  (sync -> async, async -> async): `poll`ing
+     * Backward: Waker (passed when polling) that resends Future back to executor for `poll`ing
+	  * future <- future: `Waker`
+	  * future <- systemIO (kqueue, epoll): `Waker` + `set_readable_callback(Waker)`
+   * Execution models (`spawn`, `spawn_local`, `spawn_blocked`)
   * Transforming `async` functions
 	* To the lazy tree of state machines (anonymous types implementing `Future<T>` trait) that can retry at `.await`
 	* Evaluation forced by `block_on` (or similar functions) that perform polling of events
