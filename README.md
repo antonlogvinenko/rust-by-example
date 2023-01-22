@@ -444,9 +444,9 @@
   * General overview
 	* Syntax and semantics of `async/await`: decouple call from execution
 	* Compilation of `async` functions to `Future`s (tree of state machines)
-	* Connection (avaluation links) between `async` functions (`Future`s)
+	* Connection (evaluation links) between `async` functions (`Future`s)
 		* Forward  (sync -> async, async -> async): `poll`ing
-		* Backward: Waker (passed when polling) that resends Future back to executor for `poll`ing
+		* Backward: `Waker` (passed when polling) that resends Future back to executor for `poll`ing
 			* future <- future: `Waker`
 			* future <- systemIO (kqueue, epoll): `Waker` + `set_readable_callback(Waker)`
 	 * Execution models (`spawn`, `spawn_local`, `spawn_blocked`)
