@@ -555,11 +555,11 @@
 * [Rust Atomics and Locks](https://marabos.nl/atomics/)
 * [Rust Reference](https://doc.rust-lang.org/reference/)
 * [The Rustonomicom](https://doc.rust-lang.org/nomicon/)
-* [Guide to Rustc Development](https://rustc-dev-guide.rust-lang.org/overview.html)
+* [Guide to Rustc Development](https://rustc-dev-guide.rust-lang.org/)
 * [The Rust Unstable Book](https://doc.rust-lang.org/beta/unstable-book/)
 * [Error Handling in Rust](https://nrc.github.io/error-docs/)
 * [Writing Interpreters in Rust](https://rust-hosted-langs.github.io/book/)
-* [Effective Rust](https://www.lurklurk.org/effective-rust/builders.html)
+* [Effective Rust](https://www.lurklurk.org/effective-rust/)
 
 ## Some Rust resources
 * https://wiki.alopex.li/_category/rust
