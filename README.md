@@ -547,8 +547,22 @@
 * ??? chain of mut
 
 
+## Rust books
+* [Rust Books](https://github.com/sger/RustBooks)
+* [Asynchronous programming in Rust](https://rust-lang.github.io/async-book/)
+* [Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
+* [Command Line Applications in Rust](https://rust-cli.github.io/book/)
+* [Rust Atomics and Locks](https://marabos.nl/atomics/)
+* [Rust Reference](https://doc.rust-lang.org/reference/)
+* [The Rustonomicom](https://doc.rust-lang.org/nomicon/)
+* [Guide to Rustc Development](https://rustc-dev-guide.rust-lang.org/overview.html)
+* [The Rust Unstable Book](https://doc.rust-lang.org/beta/unstable-book/)
+* [Error Handling in Rust](https://nrc.github.io/error-docs/)
+* [Writing Interpreters in Rust](https://rust-hosted-langs.github.io/book/)
+* [Effective Rust](https://www.lurklurk.org/effective-rust/builders.html)
 
 ## Some Rust resources
+* https://wiki.alopex.li/_category/rust
 * https://blog.adamchalmers.com/making-a-dns-client/
 * https://www.ralfj.de/blog/2022/04/11/provenance-exposed.html
 * https://cliffle.com/blog/rust-mutexes
