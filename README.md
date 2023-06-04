@@ -1,5 +1,5 @@
 ## Ownership & Copy vs Move
-* known size => stack, unknown stack => heap
+* known size => stack, unknown size => heap
 * tradeoffs: stack is fast but restricted, heap is slower but more versatile
 * ownership is introduced for managing heap data (freeing memory, but only freeing once)
 * ownership extended for all types
